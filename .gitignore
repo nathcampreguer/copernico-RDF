@@ -1,19 +1,44 @@
-*.rbc
-*.sassc
-.sass-cache
-capybara-*.html
-.rspec
+# assets
+.sass-cache/
+public/uploads
+public/assets
+spec/support/uploads/*
+uploads/*
+
+
+# config
+config/email.yml
+.rubocop.yml
+database.yml
+newrelic.yml
+redis.yml
+setup_mail.rb
+
+# database
+db/*.sqlite3
+dump.rdb
+script/db
+*.sql
+*.sqlite*
+
+# log
+*.log
+nohup.out
+log
+
+# rvm & bundle
+.bundle
 .rvmrc
-/.bundle
-/vendor/bundle
-/log/*
-/tmp/*
-/db/*.sqlite3
-/public/system/*
-/coverage/
-/spec/tmp/*
-**.orig
-rerun.txt
-pickle-email-*.html
-.project
-config/initializers/secret_token.rb
+Gemfile.lock
+
+# tests
+.rspec
+coverage/
+
+# temp
+tmp/
+
+# system
+.DS_Store
+
+!.gitignore
