@@ -1,0 +1,26 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: copernico_development
+  host: localhost
+  username: copernico
+  password: copernico
+  timeout: 5000
+
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: copernico_test
+  host: localhost
+  username: copernico
+  password: copernico
+  timeout: 5000
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: copernico_production
+  host: localhost
+  username: copernico
+  password: copernico
+  timeout: 5000

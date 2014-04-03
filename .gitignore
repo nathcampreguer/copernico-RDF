@@ -7,12 +7,10 @@ uploads/*
 
 
 # config
-config/email.yml
 .rubocop.yml
 database.yml
 newrelic.yml
 redis.yml
-setup_mail.rb
 
 # database
 db/*.sqlite3
@@ -24,12 +22,10 @@ script/db
 # log
 *.log
 nohup.out
-log
+log/
 
-# rvm & bundle
+# bundle
 .bundle
-.rvmrc
-Gemfile.lock
 
 # tests
 .rspec
