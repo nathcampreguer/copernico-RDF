@@ -14,6 +14,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '2.13.1'
   gem 'webmock'
+  gem 'capybara', '2.1.0'
 end
 
 group :doc do
