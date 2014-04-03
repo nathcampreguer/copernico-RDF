@@ -48,6 +48,9 @@ GEM
     erubis (2.7.0)
     execjs (2.0.2)
     hike (1.2.3)
+    http (0.5.0)
+      http_parser.rb
+    http_parser.rb (0.6.0)
     i18n (0.6.9)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
@@ -141,8 +144,10 @@ PLATFORMS
 DEPENDENCIES
   capybara (= 2.1.0)
   coffee-rails (~> 4.0.0)
+  http
   jbuilder (~> 1.2)
   jquery-rails
+  nokogiri
   rails (= 4.0.2)
   rspec-rails (= 2.13.1)
   sass-rails (~> 4.0.0)

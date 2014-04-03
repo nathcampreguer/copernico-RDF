@@ -15,6 +15,8 @@ group :development, :test do
   gem 'rspec-rails', '2.13.1'
   gem 'webmock'
   gem 'capybara', '2.1.0'
+  gem 'http'
+  gem 'nokogiri'
 end
 
 group :doc do

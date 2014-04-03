@@ -16,6 +16,19 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
+
+  config.before(:each) do
+    stub_request(:get, /api.github.com/).
+      with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
+      to_return(status: 200, body: "stubbed response", headers: {})
+
+    url = "http://boldo.caiena.net:8080/geonetwork/srv/eng/xml.search"
+    canned_request = File.read 'spec/support/fixtures/request_all_metadata.xml'
+    canned_response = File.read 'spec/support/fixtures/all_metadata_results.xml'
+    stub_request(:post, url)
+    .with(body: canned_request, header:'application/xml')
+    .to_return(body: canned_response)
+  end
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
