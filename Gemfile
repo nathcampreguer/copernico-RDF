@@ -39,8 +39,7 @@ gem 'jbuilder', '~> 1.2'
 # Use Capistrano for deployment
 gem 'capistrano', group: :development
 
-# Use debugger
-gem 'debugger', group: [:development, :test]
+gem 'webmock', group: :test
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -53,10 +52,10 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'factory_girl_rails'
   gem 'capybara'
-  gem 'webmock'
   gem 'http'
   gem 'nokogiri'
 
   gem 'rails_best_practices'
   gem 'rubocop'
+  gem 'debugger'
 end
