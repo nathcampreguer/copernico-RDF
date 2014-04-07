@@ -3,8 +3,13 @@
   <%= text_field_tag(:search_field) %>
   <%= submit_tag("Search") %>
   <br/>
-  <%#= @count %>
-  <%= @title %>
-  <%= @ids %>
-  <%= @schemas %>
+  <% i = 0
+    while i < @count.to_i do %>
+      <%= @ids[i] %><br/>
+      <%= raw @metadata_info[i].join("<br>") %><br>
+      <%= @schemas[i] %>
+      <br/>
+      <br/>
+    <% i += 1
+    end %>
 <% end %>
