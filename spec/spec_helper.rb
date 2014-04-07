@@ -17,13 +17,20 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 RSpec.configure do |config|
 
   config.before(:each) do
-    url = "http://boldo.caiena.net:8080/geonetwork/srv/eng/xml.search"
-    canned_request = File.read 'spec/support/fixtures/request_all_metadata.xml'
-    canned_response = File.read 'spec/support/fixtures/all_metadata_results.xml'
+    support_path = 'spec/support/fixtures/'
+    url = 'http://boldo.caiena.net:8080/geonetwork/srv/eng/'
+    canned_request = File.read "#{support_path}request_all_metadata.xml"
+    canned_response = File.read "#{support_path}all_metadata_results.xml"
+    single_request = File.read "#{support_path}request_one_metadata.xml"
+    single_response = File.read "#{support_path}one_metadata_result.xml"
 
-    stub_request(:post, url)
+    stub_request(:post, "#{url}xml.search")
     .with(body: canned_request, header:'application/xml')
     .to_return(status: [200, "OK"],body: canned_response)
+
+    stub_request(:post, "#{url}xml.metadata.get")
+    .with(body: single_request, header:'application/xml')
+    .to_return(status: [200, "OK"],body: single_response)
   end
 
   # ## Mock Framework
