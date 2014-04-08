@@ -1,0 +1,147 @@
+<Metadata xmlns:geonet="http://www.fao.org/geonetwork" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://localhost:8080/geonetwork/xml/schemas/iso19115/schema.xsd">
+  <mdFileID>d82231e7-0a72-4b90-b607-9d4cde21b96a</mdFileID>
+  <mdLang>
+    <languageCode value="en" />
+  </mdLang>
+  <mdChar>
+    <CharSetCd value="utf8" />
+  </mdChar>
+  <mdContact>
+    <rpIndName>Linus Goodlover</rpIndName>
+    <rpOrgName>AFR - CHAO</rpOrgName>
+    <role>
+      <RoleCd value="pointOfContact" />
+    </role>
+  </mdContact>
+  <mdDateSt>2007-03-12T15:04:23</mdDateSt>
+  <mdStanName>ISO 19115</mdStanName>
+  <mdStanVer>FDIS</mdStanVer>
+  <dataIdInfo>
+    <idCitation>
+      <resTitle>Hydrological basins in Europe</resTitle>
+      <resRefDate>
+        <refDate>2006-01-01</refDate>
+        <refDateType>
+          <DateTypCd value="creation" />
+        </refDateType>
+      </resRefDate>
+      <resEd>Second edition.</resEd>
+      <presForm>
+        <PresFormCd value="mapDigital" />
+      </presForm>
+    </idCitation>
+    <idAbs>
+Major hydrological basins and their sub-basins. This dataset divides the Europe in zones.
+</idAbs>
+    <idPurp>
+To assess which part of the land area flows to which river.
+</idPurp>
+    <status>
+      <ProgCd value="completed" />
+    </status>
+    <idPoC>
+      <rpCntInfo>
+        <cntAddress />
+      </rpCntInfo>
+      <role>
+        <RoleCd value="custodian" />
+      </role>
+    </idPoC>
+    <descKeys>
+      <keyword>watersheds</keyword>
+      <keyTyp>
+        <KeyTypCd value="theme" />
+      </keyTyp>
+    </descKeys>
+    <descKeys>
+      <keyword>Europe</keyword>
+      <keyTyp>
+        <KeyTypCd value="place" />
+      </keyTyp>
+    </descKeys>
+    <graphOver>
+      <bgFileName>large_s.png</bgFileName>
+      <bgFileDesc>thumbnail</bgFileDesc>
+      <bgFileType>png</bgFileType>
+    </graphOver>
+    <graphOver>
+      <bgFileName>large.png</bgFileName>
+      <bgFileDesc>large_thumbnail</bgFileDesc>
+      <bgFileType>png</bgFileType>
+    </graphOver>
+    <spatRpType>
+      <SpatRepTypCd value="vector" />
+    </spatRpType>
+    <dataScale>
+      <equScale>
+        <rfDenom>5000000</rfDenom>
+      </equScale>
+    </dataScale>
+    <dataLang>
+      <languageCode value="en" />
+    </dataLang>
+    <dataChar>
+      <CharSetCd value="utf8" />
+    </dataChar>
+    <tpCat>
+      <TopicCatCd value="geoscientificInformation" />
+    </tpCat>
+    <geoBox>
+      <westBL>-17.3</westBL>
+      <eastBL>51.1</eastBL>
+      <southBL>-34.6</southBL>
+      <northBL>38.2</northBL>
+    </geoBox>
+    <dataExt>
+      <tempEle>
+        <TempExtent>
+          <exTemp>
+            <TM_GeometricPrimitive>
+              <TM_Period>
+                <begin />
+                <end />
+              </TM_Period>
+            </TM_GeometricPrimitive>
+          </exTemp>
+        </TempExtent>
+      </tempEle>
+    </dataExt>
+    <suppInfo>None.</suppInfo>
+  </dataIdInfo>
+  <mdMaint>
+    <maintFreq>
+      <MaintFreqCd value="asNeeded" />
+    </maintFreq>
+  </mdMaint>
+  <dqInfo>
+    <dqScope>
+      <scpLvl>
+        <ScopeCd value="dataset" />
+      </scpLvl>
+    </dqScope>
+    <dataLineage>
+      <statement>None.</statement>
+      <prcStep>
+        <stepDesc>Last Updated</stepDesc>
+        <stepDateTm>2006-05-31T19:59:00</stepDateTm>
+      </prcStep>
+    </dataLineage>
+    <dqReport>
+      <DQTempValid>
+        <measResult>
+          <Result />
+        </measResult>
+      </DQTempValid>
+    </dqReport>
+  </dqInfo>
+  <refSysInfo>
+    <MdCoRefSys>
+      <projection>
+        <identCode>Geographic</identCode>
+      </projection>
+      <ellipsoid>
+        <identCode>WGS 1984</identCode>
+      </ellipsoid>
+    </MdCoRefSys>
+  </refSysInfo>
+</Metadata>

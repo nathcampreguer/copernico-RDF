@@ -27,31 +27,29 @@ class SearchController < ApplicationController
 
     # request & response for full metadata
     while index < @count.to_i do
-        builder_for_metadata = Nokogiri::XML::Builder.new do |xml|
-          xml.request {
-            xml.id @ids[index]
-          }
-        end
+      builder_for_metadata = Nokogiri::XML::Builder.new do |xml|
+        xml.request {
+          xml.id @ids[index]
+        }
+      end
 
-        response2 = HTTP.with_headers(content_type: "application/xml")
-                       .post("#{url}xml.metadata.get",
-                       body: builder_for_metadata.to_xml).response
+      response2 = HTTP.with_headers(content_type: "application/xml")
+                     .post("#{url}xml.metadata.get",
+                     body: builder_for_metadata.to_xml).response
 
-        # gets
-        if @schemas[index] == "iso19139"
-          @metadata_info << get_metadata_19139(response2.body)
-        elsif @schemas[index] == "iso19115"
-          @metadata_info << get_metadata_19115(response2.body)
-        elsif
-          @metadata_info << get_metadata_fgdcstd_dublincore(response2.body)
-        end
-
+      # gets metada info according to schema
+      if @schemas[index] == "iso19139"
+        @metadata_info << get_metadata_19139(response2.body)
+      elsif @schemas[index] == "iso19115"
+        @metadata_info << get_metadata_19115(response2.body)
+      elsif
+        @metadata_info << get_metadata_fgdcstd_dublincore(response2.body)
+      end
       index += 1
     end
   end
 
   private
-
     def get_metadata_id(data)
       xml = Nokogiri::XML(data)
       ids = []
@@ -74,7 +72,8 @@ class SearchController < ApplicationController
     def get_metadata_19139(data)
       xml = Nokogiri::XML(data)
       keywords = []
-      title = xml.xpath("//gmd:citation/gmd:CI_Citation/gmd:title/gco:CharacterString").text
+      title =
+      xml.xpath("//gmd:MD_DataIdentification/gmd:title/gco:CharacterString").text
       author = xml.xpath("//gmd:contact/gmd:CI_ResponsibleParty/gmd:individualName/gco:CharacterString").text
       date = xml.xpath("//gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date").text
       xml.xpath("//gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString").each{|elem| keywords << elem.text}
@@ -89,7 +88,6 @@ class SearchController < ApplicationController
       date = xml.xpath("//dataIdInfo/idCitation/resRefDate/refDate").text
       xml.xpath("//descKeys/keyword").each{|elem| keywords << elem.text}
       metadata = [title, author, date, keywords]
-
     end
 
     def get_metadata_fgdcstd_dublincore(data)
