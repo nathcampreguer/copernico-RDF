@@ -2,14 +2,14 @@ require 'spec_helper'
 
 describe SearchController do
 
+  let(:url) { 'http://boldo.caiena.net:8080/geonetwork/srv/eng/' }
+  let(:support_path) { 'spec/support/fixtures/' }
+
+  let(:canned_request) { File.read "#{support_path}request_all_metadata.xml" }
+
+  let(:canned_response){ File.read "#{support_path}all_metadata_results.xml" }
+
   describe 'GET #index' do
-
-    let(:url) { 'http://boldo.caiena.net:8080/geonetwork/srv/eng/' }
-    let(:support_path) { 'spec/support/fixtures/' }
-
-    let(:canned_request) { File.read "#{support_path}request_all_metadata.xml" }
-
-    let(:canned_response){ File.read "#{support_path}all_metadata_results.xml" }
 
     context 'creates a list of metadata summaries' do
       before do
@@ -50,4 +50,5 @@ describe SearchController do
       end
     end
   end
+
 end

@@ -49,6 +49,10 @@ class SearchController < ApplicationController
     end
   end
 
+  def show
+    @id = params[:id]
+  end
+
   private
     def get_metadata_id(data)
       xml = Nokogiri::XML(data)
