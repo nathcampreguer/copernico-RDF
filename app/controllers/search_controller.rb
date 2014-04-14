@@ -4,6 +4,8 @@ require 'nokogiri'
 class SearchController < ApplicationController
   def index
     url = 'http://boldo.caiena.net:8080/geonetwork/srv/eng/'
+    # url = 'http://mapas.mma.gov.br/geonetwork/srv/br/'
+    # url = 'http://geoportal.kscnet.ru/geonetwork/srv/rus/'
 
     # request & response for metadata summaries
     builder_for_summary = Nokogiri::XML::Builder.new do |xml|
@@ -77,10 +79,14 @@ class SearchController < ApplicationController
       xml = Nokogiri::XML(data)
       keywords = []
       title =
-      xml.xpath("//gmd:MD_DataIdentification/gmd:title/gco:CharacterString").text
-      author = xml.xpath("//gmd:contact/gmd:CI_ResponsibleParty/gmd:individualName/gco:CharacterString").text
-      date = xml.xpath("//gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date").text
-      xml.xpath("//gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString").each{|elem| keywords << elem.text}
+      xml.xpath("//gmd:citation/gmd:CI_Citation/gmd:title
+                               /gco:CharacterString").text
+      author = xml.xpath("//gmd:contact/gmd:CI_ResponsibleParty
+                           /gmd:individualName/gco:CharacterString").text
+      date = xml.xpath("//gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation
+                         /gmd:date/gmd:CI_Date/gmd:date/gco:Date").text
+      xml.xpath("//gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword
+                  /gco:CharacterString").each{|elem| keywords << elem.text}
       metadata = [title, author, date, keywords]
     end
 
