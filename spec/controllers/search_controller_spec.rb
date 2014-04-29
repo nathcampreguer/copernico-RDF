@@ -17,36 +17,14 @@ describe SearchController do
       end
 
       it 'makes a request to GeoNetwork' do
-        WebMock.should have_requested(:post, "#{url}xml.search")
-                       .with(body: canned_request,
-                       headers: { 'Content-Type' => 'application/xml' } )
+        WebMock.should have_requested(:post, "#{url}csw")
       end
 
       it 'receives an xml as a response from GeoNetwork' do
         response = HTTP.with_headers(content_type: 'application/xml')
-                       .post("#{url}xml.search", body: canned_request)
+                       .post("#{url}csw", body: canned_request)
                        .response
         expect(response.body).to eql(canned_response)
-      end
-    end
-
-    context 'gets the full metadata by id' do
-      before do
-        visit root_path
-      end
-
-      it "makes a request to GeoNetwork using the correct id" do
-        XML_MAP.each do |xml_request, xml_response|
-          WebMock.should have_requested(:post, "#{url}xml.metadata.get")
-                       .with(body: xml_request,
-                       headers: { 'Content-Type' => 'application/xml' } )
-
-          response = HTTP.with_headers(content_type: 'application/xml')
-                       .post("#{url}xml.metadata.get", body: xml_request)
-                       .response
-
-          expect(response.body).to eq(xml_response)
-        end
       end
     end
   end

@@ -1,90 +1,41 @@
-<response from="1" to="4" selected="0">
-<summary count="4" type="local">
-<metadataPOCs>
-<metadataPOC count="1" name="FAO - Land and Water Development Division"/>
-<metadataPOC count="1" name="Department of Sustainability and Environment (DSE)"/>
-</metadataPOCs>
-<spatialRepresentationTypes>
-<spatialRepresentationType count="2" name="vector" label="Vector"/>
-</spatialRepresentationTypes>
-<keywords>
-<keyword count="1" name="geoscientificInformation"/>
-<keyword count="1" name="Eurasia"/>
-<keyword count="1" name="physiography, soil"/>
-<keyword count="1" name="LAND-Ownership"/>
-<keyword count="1" name="BOUNDARIES-Administrative"/>
-<keyword count="1" name="Europe"/>
-<keyword count="1" name="watersheds"/>
-<keyword count="1" name="Biology"/>
-<keyword count="1" name="endangered plant species"/>
-<keyword count="1" name="endangered animal species"/>
-<keyword count="1" name="biodiversity"/>
-<keyword count="1" name="Global"/>
-<keyword count="1" name="boundaries"/>
-</keywords>
-<createDateYears/>
-<denominators>
-<denominator count="1" name="5000000"/>
-</denominators>
-<types>
-<type count="3" name="dataset" label="Dataset"/>
-</types>
-<serviceTypes/>
-<orgNames>
-<orgName count="1" name="FAO - Land and Water Development Division"/>
-<orgName count="1" name="Department of Sustainability and Environment (DSE)"/>
-<orgName count="1" name="AFR - CHAO"/>
-</orgNames>
-</summary>
-<metadata>
-<metadatacreationdate/>
-<geonet:info xmlns:geonet="http://www.fao.org/geonetwork">
-<id>18</id>
-<uuid>6c4677cd-76b2-40d2-8745-a392ccb616ea</uuid>
-<schema>iso19139</schema>
-<createDate>2007-07-19T14:45:07</createDate>
-<changeDate>2007-11-06T12:13:00</changeDate>
-<source>Dummy</source>
-<category>datasets</category>
-<selected>false</selected>
-<category internal="true">dataset</category>
-</geonet:info>
-</metadata>
-<metadata>
-<metadatacreationdate/>
-<geonet:info xmlns:geonet="http://www.fao.org/geonetwork">
-<id>20</id>
-<uuid>92d08286-b0c4-415c-a471-096dfcccf0b9</uuid>
-<schema>iso19139</schema>
-<createDate>2007-07-25T12:05:45</createDate>
-<changeDate>2007-11-06T12:10:47</changeDate>
-<source>Dummy</source>
-<category>maps</category>
-<category>interactiveResources</category>
-<selected>false</selected>
-<category internal="true">dataset</category>
-</geonet:info>
-</metadata>
-<metadata>
-<geonet:info xmlns:geonet="http://www.fao.org/geonetwork">
-<id>15</id>
-<uuid>3b791e7f-f5b8-4515-bc4b-d95c83b6ca0e</uuid>
-<schema>fgdc-std</schema>
-<createDate>2005-03-31T19:13:31</createDate>
-<changeDate>2007-03-12T14:52:46</changeDate>
-<source>Dummy</source>
-<selected>false</selected>
-</geonet:info>
-</metadata>
-<metadata xmlns:geonet="http://www.fao.org/geonetwork" xmlns:exslt="http://exslt.org/common">
-<geonet:info>
-<id>16</id>
-<uuid>d82231e7-0a72-4b90-b607-9d4cde21b96a</uuid>
-<schema>iso19115</schema>
-<createDate>2005-08-23T17:58:18</createDate>
-<changeDate>2007-03-12T17:49:50</changeDate>
-<source>Dummy</source>
-<selected>false</selected>
-</geonet:info>
-</metadata>
-</response>
+<?xml version="1.0" encoding="UTF-8"?>
+<csw:GetRecordsResponse xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/cat/csw/2.0.2 http://schemas.opengis.net/csw/2.0.2/CSW-discovery.xsd">
+    <csw:SearchStatus timestamp="2014-04-29T12:12:55" />
+    <csw:SearchResults numberOfRecordsMatched="4" numberOfRecordsReturned="4" elementSet="summary" nextRecord="0">
+        <csw:SummaryRecord xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:geonet="http://www.fao.org/geonetwork" xmlns:dct="http://purl.org/dc/terms/">
+            <dc:identifier>6c4677cd-76b2-40d2-8745-a392ccb616ea</dc:identifier>
+            <dc:title>Localities in Victoria (VMADMIN.LOCALITY_POLYGON) - Comprehensive Elements</dc:title>
+            <dc:type>dataset</dc:type>
+            <dc:subject>BOUNDARIES-Administrative</dc:subject>
+            <dc:subject>LAND-Ownership</dc:subject>
+            <dc:subject>boundaries</dc:subject>
+            <dc:format>Most popular formats including ESRI shape, MapInfo Tab and Oracle Spatial</dc:format>
+            <dct:abstract>This dataset is the definitive set of locality boundaries for the state of Victoria as defined by Local Government and registered by the Registrar of Geographic Names. The boundaries are aligned to Vicmap Property. This dataset is part of the Vicmap Admin dataset series.</dct:abstract>
+        </csw:SummaryRecord>
+        <csw:SummaryRecord xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:geonet="http://www.fao.org/geonetwork" xmlns:dct="http://purl.org/dc/terms/">
+            <dc:identifier>3b791e7f-f5b8-4515-bc4b-d95c83b6ca0e</dc:identifier>
+            <dc:title>Globally threatened species of the world</dc:title>
+            <dc:subject>GEMET 2000 biodiversity endangered animal species endangered plant species</dc:subject>
+            <dc:subject>None Biology</dc:subject>
+            <dc:subject>None Global</dc:subject>
+            <dct:abstract>Contains information on animals and plants threatened at the global level.</dct:abstract>
+            <dct:modified>20011220</dct:modified>
+        </csw:SummaryRecord>
+        <csw:SummaryRecord xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:geonet="http://www.fao.org/geonetwork" xmlns:dct="http://purl.org/dc/terms/">
+            <dc:identifier>92d08286-b0c4-415c-a471-096dfcccf0b9</dc:identifier>
+            <dc:title>Physiographic Map of North and Central Eurasia (Sample record, please remove!)</dc:title>
+            <dc:subject>physiography, soil</dc:subject>
+            <dc:subject>Eurasia</dc:subject>
+            <dc:subject>geoscientificInformation</dc:subject>
+            <dct:abstract>Physiographic maps for the CIS and Baltic States (CIS_BS), Mongolia, China and Taiwan Province of China. Between the three regions (China, Mongolia, and CIS_BS countries) DCW boundaries were introduced. There are no DCW boundaries between Russian Federation and the rest of the new countries of the CIS_BS. The original physiographic map of China includes the Chinese border between India and China, which extends beyond the Indian border line, and the South China Sea islands (no physiographic information is present for islands in the South China Sea). The use of these country boundaries does not imply the expression of any opinion whatsoever on the part of FAO concerning the legal or constitutional states of any country, territory, or sea area, or concerning delimitation of frontiers. The Maps visualize the items LANDF, HYPSO, SLOPE that correspond to Landform, Hypsometry and Slope.</dct:abstract>
+        </csw:SummaryRecord>
+        <csw:SummaryRecord xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:geonet="http://www.fao.org/geonetwork" xmlns:dct="http://purl.org/dc/terms/">
+            <dc:identifier>d82231e7-0a72-4b90-b607-9d4cde21b96a</dc:identifier>
+            <dc:title>Hydrological basins in Europe</dc:title>
+            <dc:subject>watersheds</dc:subject>
+            <dc:subject>Europe</dc:subject>
+            <dc:subject>geoscientificInformation</dc:subject>
+            <dct:abstract>Major hydrological basins and their sub-basins. This dataset divides the Europe in zones.</dct:abstract>
+        </csw:SummaryRecord>
+    </csw:SearchResults>
+</csw:GetRecordsResponse>

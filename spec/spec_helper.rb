@@ -19,33 +19,13 @@ RSpec.configure do |config|
   config.before(:each) do
     support_path = 'spec/support/fixtures/'
     url = 'http://boldo.caiena.net:8080/geonetwork/srv/eng/'
-
     canned_request = File.read "#{support_path}request_all_metadata.xml"
-    id_15_request  = File.read "#{support_path}id_15_request.xml"
-    id_16_request  = File.read "#{support_path}id_16_request.xml"
-    id_18_request  = File.read "#{support_path}id_18_request.xml"
-    id_20_request  = File.read "#{support_path}id_20_request.xml"
-
     canned_response = File.read "#{support_path}all_metadata_results.xml"
-    id_15_response  = File.read "#{support_path}id_15_response.xml"
-    id_16_response  = File.read "#{support_path}id_16_response.xml"
-    id_18_response  = File.read "#{support_path}id_18_response.xml"
-    id_20_response  = File.read "#{support_path}id_20_response.xml"
 
-    stub_request(:post, "#{url}xml.search")
-    .with(body: canned_request, header:'application/xml')
+    stub_request(:post, "#{url}csw")
+    .with(header:'application/xml')
     .to_return(body: canned_response)
 
-    XML_MAP = {id_15_request => id_15_response,
-               id_16_request => id_16_response,
-               id_18_request => id_18_response,
-               id_20_request => id_20_response}
-
-    XML_MAP.each do |xml_request, xml_response|
-      stub_request(:post, "#{url}xml.metadata.get")
-      .with(body: xml_request, header:'application/xml')
-      .to_return(body: xml_response)
-    end
   end
 
   # ## Mock Framework

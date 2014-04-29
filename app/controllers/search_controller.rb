@@ -3,52 +3,37 @@ require 'nokogiri'
 
 class SearchController < ApplicationController
   def index
-    url = 'http://boldo.caiena.net:8080/geonetwork/srv/eng/'
-    # url = 'http://mapas.mma.gov.br/geonetwork/srv/br/'
-    # url = 'http://geoportal.kscnet.ru/geonetwork/srv/rus/'
+    #url = 'http://boldo.caiena.net:8080/geonetwork/srv/eng/'
+    #url = 'http://mapas.mma.gov.br/geonetwork/srv/br/'
+    #url = 'http://www.metadados.geo.ibge.gov.br/geonetwork_ibge/srv/por/'
+    url = 'http://www.metadados.inde.gov.br/geonetwork/srv/por/'
 
     # request & response for metadata summaries
     builder_for_summary = Nokogiri::XML::Builder.new do |xml|
-      xml.request {
-        xml.any params[:search_field]
-      }
-    end
-
-    response = HTTP.with_headers(content_type: "application/xml")
-                   .post("#{url}xml.search",
-                   body: builder_for_summary.to_xml).response
-
-    # needed variables for retrieving the full metadata
-    @ids = get_metadata_id(response.body)
-    @schemas = get_schema(response.body)
-    @count = get_metadata_count(response.body)
-
-    # array of resulting metada
-    @metadata_info = []
-    index = 0
-
-    # request & response for full metadata
-    while index < @count.to_i do
-      builder_for_metadata = Nokogiri::XML::Builder.new do |xml|
-        xml.request {
-          xml.id @ids[index]
+      xml['csw'].GetRecords('xmlns:csw' => 'http://www.opengis.net/cat/csw/2.0.2',
+                            'service' => 'CSW',
+                            'version' => '2.0.2',
+                            'resultType' => 'results') do
+        xml['csw'].Query('typeNames' => 'gmd:MD_Metadata') {
+          xml['csw'].Constraint('version' => '1.1.0'){
+            xml.Filter('xmlns' => 'http://www.opengis.net/ogc',
+                       'xmlns:gml' => 'http://www.opengis.net/gml'){
+              xml.PropertyIsLike('wildCard' => '',
+                              'singleChar' => '_'){
+                xml.PropertyName 'any'
+                xml.Literal params[:search_field]
+              }
+            }
+          }
         }
       end
-
-      response2 = HTTP.with_headers(content_type: "application/xml")
-                     .post("#{url}xml.metadata.get",
-                     body: builder_for_metadata.to_xml).response
-
-      # gets metada info according to schema
-      if @schemas[index] == "iso19139"
-        @metadata_info << get_metadata_19139(response2.body)
-      elsif @schemas[index] == "iso19115"
-        @metadata_info << get_metadata_19115(response2.body)
-      elsif
-        @metadata_info << get_metadata_fgdcstd_dublincore(response2.body)
-      end
-      index += 1
     end
+
+   response = HTTP.with_headers(content_type: "application/xml")
+                  .post("#{url}csw",
+                  body: builder_for_summary.to_xml).response
+
+    @index = response.body
   end
 
   def show
@@ -56,57 +41,22 @@ class SearchController < ApplicationController
   end
 
   private
-    def get_metadata_id(data)
+    def get_metadata_index(data)
       xml = Nokogiri::XML(data)
-      ids = []
-      xml.xpath("//id").each{|elem| ids << elem.text}
-      ids
+      index = []
+      xml.remove_namespaces!
+      xml.xpath("//SummaryRecord").each { |node|
+      metadata = []
+      metadata << node.xpath('identifier').inner_text
+      metadata << node.xpath('title').inner_text
+      metadata << node.xpath('abstract').inner_text
+      subjects = []
+      node.xpath('subject').each { |subject|
+        subjects << subject.inner_text
+      }
+      metadata << subjects
+      index << metadata
+      }
+      index
     end
-
-    def get_schema(data)
-      xml = Nokogiri::XML(data)
-      schemas = []
-      xml.xpath("//schema").each{|elem| schemas << elem.text}
-      schemas
-    end
-
-    def get_metadata_count(data)
-      xml = Nokogiri::XML(data)
-      xml.xpath("//response/@to").text
-    end
-
-    def get_metadata_19139(data)
-      xml = Nokogiri::XML(data)
-      keywords = []
-      title =
-      xml.xpath("//gmd:citation/gmd:CI_Citation/gmd:title
-                               /gco:CharacterString").text
-      author = xml.xpath("//gmd:contact/gmd:CI_ResponsibleParty
-                           /gmd:individualName/gco:CharacterString").text
-      date = xml.xpath("//gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation
-                         /gmd:date/gmd:CI_Date/gmd:date/gco:Date").text
-      xml.xpath("//gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword
-                  /gco:CharacterString").each{|elem| keywords << elem.text}
-      metadata = [title, author, date, keywords]
-    end
-
-    def get_metadata_19115(data)
-      xml = Nokogiri::XML(data)
-      keywords = []
-      title = xml.xpath("//resTitle").text
-      author = xml.xpath("//mdContact/rpIndName").text
-      date = xml.xpath("//dataIdInfo/idCitation/resRefDate/refDate").text
-      xml.xpath("//descKeys/keyword").each{|elem| keywords << elem.text}
-      metadata = [title, author, date, keywords]
-    end
-
-    def get_metadata_fgdcstd_dublincore(data)
-      xml = Nokogiri::XML(data)
-      keywords = []
-      title = xml.xpath("//title").text
-      author = xml.xpath("//origin").text
-      date = xml.xpath("//pubdate").text
-      xml.xpath("//keywords/theme/themekey").each{|elem| keywords << elem.text}
-      metadata = [title, author, date, keywords]
-    end
-end
+ end
