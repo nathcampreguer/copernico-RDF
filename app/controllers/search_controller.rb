@@ -33,7 +33,7 @@ class SearchController < ApplicationController
                   .post("#{url}csw",
                   body: builder_for_summary.to_xml).response
 
-    @index = response.body
+    @index = get_metadata_index(response.body)
   end
 
   def show
