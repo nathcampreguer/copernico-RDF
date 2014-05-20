@@ -58,6 +58,6 @@ RSpec.configure do |config|
   config.order = "random"
 
   # Enabling FactoryGirl methods with ease
-  config.include FactoryGirl::Syntax::Methods
+  #config.include FactoryGirl::Syntax::Methods
   config.include Capybara::DSL
 end
