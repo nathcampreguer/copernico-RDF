@@ -10,9 +10,11 @@
 
   <h5>Metadata results:</h5>
 
-    <% @index.each do |e| %>
+    <%# @index.each do |e| %>
         <br/>
-      <%= e.join('<br/>').html_safe %>
+      <%#= e.join('<br/>').html_safe %>
         <br/>
-    <% end %>
+    <%# end %>
+
+    <%= @index %>
 <% end %>

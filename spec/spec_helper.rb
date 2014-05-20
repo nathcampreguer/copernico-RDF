@@ -1,9 +1,13 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../../config/environment", __FILE__)
+
+require_relative '../config/environment'
+require_relative '../lib/wrapper'
+
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'webmock/rspec'
+
 WebMock.disable_net_connect!(allow_localhost: true)
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -22,8 +26,13 @@ RSpec.configure do |config|
     canned_request = File.read "#{support_path}request_all_metadata.xml"
     canned_response = File.read "#{support_path}all_metadata_results.xml"
 
+    # stub_request(:post, "#{url}csw")
+    # .with(header:'application/xml')
+    # .to_return(body: canned_response)
+
     stub_request(:post, "#{url}csw")
-    .with(header:'application/xml')
+    .with(headers: {'Host'=>'boldo.caiena.net', 'User-Agent'=>'RubyHTTPGem/0.5.0'},
+          body: anything)
     .to_return(body: canned_response)
 
   end
