@@ -8,9 +8,7 @@ module Wrapper
 
     @base_uri = 'http://boldo.caiena.net:8080/geonetwork/srv/eng/'
 
-    def get_results
-      @base_uri = 'http://boldo.caiena.net:8080/geonetwork/srv/eng/'
-
+    def get_results(search_params)
       builder_for_summary = Nokogiri::XML::Builder.new do |xml|
         xml['csw'].GetRecords('xmlns:csw' => 'http://www.opengis.net/cat/csw/2.0.2',
                               'service' => 'CSW',
@@ -25,7 +23,7 @@ module Wrapper
                          'xmlns:gml' => 'http://www.opengis.net/gml') {
                 xml.PropertyIsLike('wildCard' => '','singleChar' => '_') {
                   xml.PropertyName 'any'
-                  xml.Literal '' #params[:search_field]
+                  xml.Literal search_params
                 }
               }
             }
@@ -34,7 +32,7 @@ module Wrapper
       end
 
       response = HTTP.with_headers(content_type: "application/xml")
-                .post("#{@base_uri}csw",
+                .post("#{Wrapper::Api.base_uri}csw",
                 body: builder_for_summary.to_xml).response.body
     end
   end
