@@ -3,8 +3,11 @@ Copernico::Application.routes.draw do
 
   root 'search#index'
 
-  post '/' => 'search#index'
-  get 'search/:id' => 'search#show', as: :search
+  match '/', to: 'search#index', via: 'post'
+  match 'search/:id', to: 'search#show', via: 'get', as: :search
+
+  match '/about_metadata', to: 'static_pages#about_metadata', via: 'get'
+  match '/about_project', to: 'static_pages#about_project', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
