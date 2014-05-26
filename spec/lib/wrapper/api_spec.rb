@@ -8,8 +8,8 @@ describe Wrapper::Api do
     end
 
     it 'should have the base url set to the GeoNetwork API endpoint' do
-      expect(Wrapper::Api.base_uri).to
-                          eq('http://boldo.caiena.net:8080/geonetwork/srv/eng/')
+      expect(Wrapper::Api.base_uri)
+                    .to eq('http://boldo.caiena.net:8080/geonetwork/srv/eng/')
     end
   end
 end
