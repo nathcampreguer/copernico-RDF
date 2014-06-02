@@ -34,7 +34,7 @@ module Wrapper
                     'version' => '2.0.2',
                     'resultType' => 'results',
                     # metadata records start at position 1
-                    'startPosition' => '57',
+                    'startPosition' => '1',
                     'maxRecords' => "#{Wrapper::GeonetworkApi.total_server_records}"
                     ) do
 
