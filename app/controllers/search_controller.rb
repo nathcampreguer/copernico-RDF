@@ -8,7 +8,7 @@ class SearchController < ApplicationController
   include Wrapper
 
   def index
-    @index = Wrapper::Api.new.get_results(params[:search_field])
+    @index = Wrapper::GeonetworkApi.new.get_results(params[:search_field])
   end
 
   def show

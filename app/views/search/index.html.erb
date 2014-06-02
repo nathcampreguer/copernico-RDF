@@ -8,13 +8,17 @@
   <br/>
   <br/>
 
-  <h5>Metadata results:</h5>
+  <h5><strong>Metadata Results:</strong></h5>
 
-    <%# @index.each do |e| %>
+    <% @index.each do |e| %>
         <br/>
-      <%#= e.join('<br/>').html_safe %>
+      <%= "<strong>UUID:</strong> #{e.uuid}".html_safe %>
         <br/>
-    <%# end %>
-
-    <%= @index %>
+      <%= "<strong>Title:</strong> #{e.title}".html_safe %>
+        <br/>
+      <%= "<strong>Abstract:</strong> <justified>#{e.abstract}".html_safe %>
+        <br/>
+      <%= "<strong>Keywords:</strong> #{e.keywords}".html_safe %>
+        <br/>
+    <% end %>
 <% end %>

@@ -1,0 +1,90 @@
+<response from="1" to="4" selected="0">
+    <summary count="4" type="local">
+        <metadataPOCs>
+            <metadataPOC count="1" name="FAO - Land and Water Development Division" />
+            <metadataPOC count="1" name="Department of Sustainability and Environment (DSE)" />
+        </metadataPOCs>
+        <spatialRepresentationTypes>
+            <spatialRepresentationType count="2" name="vector" label="Vector" />
+        </spatialRepresentationTypes>
+        <keywords>
+            <keyword count="1" name="geoscientificInformation" />
+            <keyword count="1" name="Eurasia" />
+            <keyword count="1" name="physiography, soil" />
+            <keyword count="1" name="LAND-Ownership" />
+            <keyword count="1" name="BOUNDARIES-Administrative" />
+            <keyword count="1" name="Europe" />
+            <keyword count="1" name="watersheds" />
+            <keyword count="1" name="Biology" />
+            <keyword count="1" name="endangered plant species" />
+            <keyword count="1" name="endangered animal species" />
+            <keyword count="1" name="biodiversity" />
+            <keyword count="1" name="Global" />
+            <keyword count="1" name="boundaries" />
+        </keywords>
+        <createDateYears />
+        <denominators>
+            <denominator count="1" name="5000000" />
+        </denominators>
+        <types>
+            <type count="3" name="dataset" label="Dataset" />
+        </types>
+        <serviceTypes />
+        <orgNames>
+            <orgName count="1" name="FAO - Land and Water Development Division" />
+            <orgName count="1" name="Department of Sustainability and Environment (DSE)" />
+            <orgName count="1" name="AFR - CHAO" />
+        </orgNames>
+    </summary>
+    <metadata>
+        <metadatacreationdate />
+        <geonet:info xmlns:geonet="http://www.fao.org/geonetwork">
+            <id>18</id>
+            <uuid>6c4677cd-76b2-40d2-8745-a392ccb616ea</uuid>
+            <schema>iso19139</schema>
+            <createDate>2007-07-19T14:45:07</createDate>
+            <changeDate>2007-11-06T12:13:00</changeDate>
+            <source>Dummy</source>
+            <category>datasets</category>
+            <selected>false</selected>
+            <category internal="true">dataset</category>
+        </geonet:info>
+    </metadata>
+    <metadata>
+        <geonet:info xmlns:geonet="http://www.fao.org/geonetwork">
+            <id>15</id>
+            <uuid>3b791e7f-f5b8-4515-bc4b-d95c83b6ca0e</uuid>
+            <schema>fgdc-std</schema>
+            <createDate>2005-03-31T19:13:31</createDate>
+            <changeDate>2007-03-12T14:52:46</changeDate>
+            <source>Dummy</source>
+            <selected>false</selected>
+        </geonet:info>
+    </metadata>
+    <metadata>
+        <metadatacreationdate />
+        <geonet:info xmlns:geonet="http://www.fao.org/geonetwork">
+            <id>20</id>
+            <uuid>92d08286-b0c4-415c-a471-096dfcccf0b9</uuid>
+            <schema>iso19139</schema>
+            <createDate>2007-07-25T12:05:45</createDate>
+            <changeDate>2007-11-06T12:10:47</changeDate>
+            <source>Dummy</source>
+            <category>maps</category>
+            <category>interactiveResources</category>
+            <selected>false</selected>
+            <category internal="true">dataset</category>
+        </geonet:info>
+    </metadata>
+    <metadata xmlns:geonet="http://www.fao.org/geonetwork" xmlns:exslt="http://exslt.org/common">
+        <geonet:info>
+            <id>16</id>
+            <uuid>d82231e7-0a72-4b90-b607-9d4cde21b96a</uuid>
+            <schema>iso19115</schema>
+            <createDate>2005-08-23T17:58:18</createDate>
+            <changeDate>2007-03-12T17:49:50</changeDate>
+            <source>Dummy</source>
+            <selected>false</selected>
+        </geonet:info>
+    </metadata>
+</response>
