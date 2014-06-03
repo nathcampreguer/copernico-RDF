@@ -5,8 +5,8 @@ describe 'Search' do
   before do
     visit root_path
 
-    fill_in 'Search for', with: ''
-    click_button 'Search'
+    fill_in 'search_field', with: ''
+    click_button 'Buscar'
   end
 
   let(:support_path) { 'spec/support/fixtures/' }

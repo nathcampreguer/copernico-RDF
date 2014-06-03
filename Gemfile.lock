@@ -30,6 +30,8 @@ GEM
     ast (1.1.0)
     atomic (1.1.16)
     awesome_print (1.2.0)
+    bootstrap-sass (2.3.2.0)
+      sass (~> 3.2)
     builder (3.1.4)
     capistrano (3.1.0)
       i18n
@@ -241,6 +243,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass (= 2.3.2.0)
   capistrano
   capybara
   debugger

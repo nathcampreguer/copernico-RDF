@@ -5,9 +5,8 @@ describe 'search/index.html.erb' do
     visit root_path
 
     expect(page).to have_selector('form')
-    expect(page).to have_content('Search for:')
     expect(page).to have_field('search_field')
-    expect(page).to have_field('Search')
+    expect(page).to have_button('Buscar')
   end
 end
 

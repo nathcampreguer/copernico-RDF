@@ -3,7 +3,7 @@ require 'nokogiri'
 
 class SearchController < ApplicationController
   def index
-    url = 'http://boldo.caiena.net:8080/geonetwork/srv/eng/'
+     url = 'http://boldo.caiena.net:8080/geonetwork/srv/eng/'
     # url = 'http://mapas.mma.gov.br/geonetwork/srv/br/'
     # url = 'http://www.metadados.geo.ibge.gov.br/geonetwork_ibge/srv/por/'
     # url = 'http://www.metadados.inde.gov.br/geonetwork/srv/por/'

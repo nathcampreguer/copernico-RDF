@@ -1,18 +1,24 @@
-<%= form_tag(controller: "search", action: "index") do %>
-  <br/>
+<div class='row'>
 
-  <%= label_tag(:search_field, "Search for:") %>
-  <%= text_field_tag(:search_field) %>
-  <%= submit_tag("Search") %>
-
-  <br/>
-  <br/>
-
-  <h5>Metadata results:</h5>
-
-    <% @index.each do |e| %>
-        <br/>
-      <%= e.join('<br/>').html_safe %>
-        <br/>
+  <div class='col-md-3'>
+    <%= form_tag({controller: 'search', action: 'index'}) do %>
+      <div class='input-group input-group-sm'>
+        <%= text_field_tag(:search_field, '',class: 'form-control' ) %>
+        <span class='input-group-btn'>
+          <%= button_tag('Buscar', class: 'btn btn-default', type: 'submit') %>
+        </span>
+      </div> <!--input-group-->
     <% end %>
-<% end %>
+  </div>
+
+  <div class='col-md-9'>
+    <% @index.each do |e| %>
+      <div>
+        <br/>
+          <%= e.join('<br/>').html_safe %>
+        <br/>
+      </div>
+    <% end %>
+  </div>
+
+</div>

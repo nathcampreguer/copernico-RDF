@@ -10,6 +10,6 @@ describe 'about_metadata' do
 
   it { expect(page).to have_link('Sobre o Projeto') }
 
-  it { expect(page).to have_xpath("//img[@src=\"/assets/unesp.png\"]") }
+  it { expect(page).to have_content('Logo') }
 
 end
