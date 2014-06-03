@@ -81,8 +81,7 @@ module Wrapper
         node.xpath('subject').each { |subject|
           subjects << subject.inner_text
         }
-
-        Wrapper::GeonetworkApi.metadata.keywords = subjects.join(', ')
+        Wrapper::GeonetworkApi.metadata.keywords = subjects
 
         index_records << Wrapper::GeonetworkApi.metadata
       }

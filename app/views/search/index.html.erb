@@ -12,13 +12,18 @@
   </div>
 
   <div class='col-md-9'>
+    <%= paginate @index %>
+
     <% @index.each do |e| %>
-      <div>
-        <br/>
-          <%= e.join('<br/>').html_safe %>
-        <br/>
+      <div class='media-body'>
+        <a class='media-heading' href='#'><%= e.titles %></a>
+        <p><%= e.uuid %></p>
+        <p><%= e.abstract %></p>
+        <p><%= e.keywords.join(', ') %></p>
       </div>
     <% end %>
+
+    <%= paginate @index %>
   </div>
 
 </div>

@@ -7,7 +7,9 @@ class SearchController < ApplicationController
   include Wrapper
 
   def index
-    @index = Wrapper::GeonetworkApi.new.get_results(params[:search_field])
+    @index = Kaminari.paginate_array(Wrapper::GeonetworkApi.new
+                     .get_results(params[:search_field]))
+                     .page(params[:page]).per(5)
   end
 
   def show
