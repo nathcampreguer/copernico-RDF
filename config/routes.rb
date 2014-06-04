@@ -4,7 +4,7 @@ Copernico::Application.routes.draw do
   root 'search#index'
 
   match '/', to: 'search#index', via: 'post'
-  match 'search/:id', to: 'search#show', via: 'get', as: :search
+  match '/metadata/:uuid', to: 'search#show', via: 'get', as: :metadata
 
   match '/about_metadata', to: 'static_pages#about_metadata', via: 'get'
   match '/about_project', to: 'static_pages#about_project', via: 'get'

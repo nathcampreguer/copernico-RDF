@@ -58,15 +58,6 @@ module Wrapper
       Wrapper::GeonetworkApi.index_records
     end
 
-    private
-
-    def get_total_server_records(data)
-      xml = Nokogiri::XML(data)
-      xml.remove_namespaces!
-      total_records = xml.xpath("//summary/@count")
-                         .inner_text.to_i
-    end
-
     def get_metadata_index(data)
       xml = Nokogiri::XML(data)
       index_records = []
@@ -87,6 +78,15 @@ module Wrapper
       }
 
       index_records
+    end
+
+    private
+
+    def get_total_server_records(data)
+      xml = Nokogiri::XML(data)
+      xml.remove_namespaces!
+      total_records = xml.xpath("//summary/@count")
+                         .inner_text.to_i
     end
   end
 end

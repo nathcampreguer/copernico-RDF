@@ -13,6 +13,6 @@ class SearchController < ApplicationController
   end
 
   def show
-    @id = params[:id]
+    @uuid = params[:uuid]
   end
 end
