@@ -14,12 +14,6 @@ describe GeonetworkApi do
     end
   end
 
-  describe 'a metadata record' do
-    it 'should exist' do
-      expect(api.metadata).to be_a MetadataRecord
-    end
-  end
-
   describe 'pagination' do
     it 'receives a collection of Metadata Record as a response' do
       response = HTTP.with_headers(content_type: 'application/xml')

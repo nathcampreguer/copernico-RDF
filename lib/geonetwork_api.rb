@@ -2,11 +2,10 @@ class GeonetworkApi
   DEFAULT_HTTP_HEADER = { content_type: 'application/xml' }
   SERVER_COUNT_XML = %q{<?xml version="1.0"?><request><any/></request>}
 
-  attr_accessor :base_uri, :metadata
+  attr_accessor :base_uri
 
   def initialize(base_uri)
     self.base_uri = base_uri
-    @metadata = MetadataRecord.new
   end
 
   def get_results(search_params)
@@ -16,7 +15,6 @@ class GeonetworkApi
                   'service' => 'CSW',
                   'version' => '2.0.2',
                   'resultType' => 'results',
-                  # metadata records start at position 1
                   'startPosition' => '1',
                   'maxRecords' => "#{server_records_count}"
                   ) do
