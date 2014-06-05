@@ -1,4 +1,5 @@
 class GeonetworkApi
+  DEFAULT_HTTP_HEADER = { content_type: 'application/xml' }
   SERVER_COUNT_XML = %q{<?xml version="1.0"?><request><any/></request>}
 
   attr_accessor :base_uri, :metadata
@@ -6,12 +7,6 @@ class GeonetworkApi
   def initialize(base_uri)
     self.base_uri = base_uri
     @metadata = MetadataRecord.new
-  end
-
-  def get_response(body, service)
-    http = HTTP.with_headers(content_type: "application/xml").post("#{base_uri}#{service}", body: body)
-
-    http.response.body
   end
 
   def get_results(search_params)
@@ -40,7 +35,7 @@ class GeonetworkApi
       end
     end
 
-    get_metadata_index(get_response(builder_for_summary.to_xml,"csw"))
+    get_metadata_index(http_post(builder_for_summary.to_xml,"csw"))
   end
 
   def get_metadata_index(data)
@@ -68,7 +63,13 @@ class GeonetworkApi
   private
 
   def server_records_count
-    data = get_response(SERVER_COUNT_XML, "xml.search")
+    data = http_post(SERVER_COUNT_XML, "xml.search")
     Nokogiri::XML(data).xpath("//summary/@count").inner_text.to_i
+  end
+
+  def http_post(body, path)
+    url = "#{base_uri}/#{path}"
+    http = HTTP.with_headers(DEFAULT_HTTP_HEADER).post(url, body: body)
+    http.response.body
   end
 end

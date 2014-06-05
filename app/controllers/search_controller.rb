@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
   BASE_URIS = {
-    caiena: 'http://boldo.caiena.net:8080/geonetwork/srv/eng/',
-    mma: 'http://mapas.mma.gov.br/geonetwork/srv/br/'
+    caiena: 'http://boldo.caiena.net:8080/geonetwork/srv/eng',
+    mma: 'http://mapas.mma.gov.br/geonetwork/srv/br'
   }
 
   def index
