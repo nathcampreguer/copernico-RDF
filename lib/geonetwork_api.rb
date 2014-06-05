@@ -13,13 +13,13 @@ class GeonetworkApi
       search: search
     }
 
-    MetadataRecordParser.parse(http_post(body, 'csw'))
+    MetadataRecordParser.parse(http_post(body, 'xml.search'))
   end
 
   private
 
   def server_records_count
-    data = http_post(I18n.t('geonetwork_api.xml.count'), "xml.search")
+    data = http_post(I18n.t('geonetwork_api.xml.count'), 'csw')
     Nokogiri::XML(data).xpath("//summary/@count").inner_text.to_i
   end
 

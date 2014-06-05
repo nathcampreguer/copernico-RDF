@@ -5,6 +5,8 @@ class SearchController < ApplicationController
     mma: 'http://mapas.mma.gov.br/geonetwork/srv/br'
   }
 
+  DEFAULT_PROVIDER = :ana
+
   def index
     @metadata_records = paginated(geonetwork_api.search(params[:search_field]))
   end
@@ -17,7 +19,7 @@ class SearchController < ApplicationController
   private
 
   def geonetwork_api
-    GeonetworkApi.new(BASE_URIS[:ana])
+    GeonetworkApi.new(BASE_URIS[DEFAULT_PROVIDER])
   end
 
   def paginated(metadata_records)

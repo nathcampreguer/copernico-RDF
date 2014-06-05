@@ -10,6 +10,10 @@ describe SearchController do
 
   describe 'GET #index' do
     before do
+      # stuba o provedor de servico do geonetwork
+      stub_const('SearchController::DEFAULT_PROVIDER', :caiena)
+      stub_const('SearchController::BASE_URIS', { caiena: url })
+
       visit root_path
     end
 
