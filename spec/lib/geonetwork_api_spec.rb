@@ -9,10 +9,6 @@ describe GeonetworkApi do
   let(:xml_search_response){ File.read "#{support_path}xml_search_response.xml" }
 
   describe 'default attributes' do
-    it 'should include http methods' do
-      expect(GeonetworkApi).to include HTTP
-    end
-
     it 'should have the base url set to the GeoNetwork GeonetworkApi endpoint' do
       expect(GeonetworkApi.base_uri)
                     .to eq(url)

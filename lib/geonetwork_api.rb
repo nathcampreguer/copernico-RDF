@@ -4,8 +4,6 @@ class GeonetworkApi
                   :index_records
   end
 
-  include HTTP
-
   # @base_uri = 'http://boldo.caiena.net:8080/geonetwork/srv/eng/'
   @base_uri = 'http://mapas.mma.gov.br/geonetwork/srv/br/'
   @metadata = MetadataRecord.new
