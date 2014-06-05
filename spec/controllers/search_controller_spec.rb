@@ -13,11 +13,11 @@ describe SearchController do
       visit root_path
     end
 
-    it 'sends a search request to GeoNetwork to the Wrapper::Api' do
+    it 'sends a search request to GeoNetwork to the Api' do
       WebMock.should have_requested(:post, "#{url}csw")
     end
 
-    it 'sends a xml.search request to GeoNetwork to the Wrapper::Api' do
+    it 'sends a xml.search request to GeoNetwork to the Api' do
       WebMock.should have_requested(:post, "#{url}xml.search")
     end
 

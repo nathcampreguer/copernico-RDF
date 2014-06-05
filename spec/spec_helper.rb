@@ -2,7 +2,6 @@
 ENV["RAILS_ENV"] ||= 'test'
 
 require_relative '../config/environment'
-require_relative '../lib/wrapper'
 
 require 'rspec/rails'
 require 'rspec/autorun'

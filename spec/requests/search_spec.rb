@@ -11,7 +11,7 @@ describe 'Search' do
 
   let(:support_path) { 'spec/support/fixtures/' }
   let(:canned_response) { File.read "#{support_path}all_metadata_results.xml" }
-  let(:index) { Wrapper::GeonetworkApi.new.get_metadata_index(canned_response) }
+  let(:index) { GeonetworkApi.new.get_metadata_index(canned_response) }
 
   it 'displays an empty search based index' do
 
