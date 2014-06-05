@@ -1,28 +1,21 @@
 class GeonetworkApi
-  attr_accessor :base_uri, :metadata, :total_records, :index_records
+  SERVER_COUNT_XML = %q{<?xml version="1.0"?><request><any/></request>}
+
+  attr_accessor :base_uri, :metadata, :index_records
 
   def initialize(base_uri)
     self.base_uri = base_uri
     @metadata = MetadataRecord.new
-    @total_records = 0
     @index_records = []
   end
 
-  def get_response(builder, service)
-    http = HTTP.with_headers(content_type: "application/xml").post("#{base_uri}#{service}", body: builder.to_xml)
+  def get_response(body, service)
+    http = HTTP.with_headers(content_type: "application/xml").post("#{base_uri}#{service}", body: body)
 
     http.response.body
   end
 
   def get_results(search_params)
-    builder = Nokogiri::XML::Builder.new do |xml|
-      xml.request {
-        xml.any ''
-      }
-    end
-
-    total_server_records = get_total_server_records(get_response(builder, "xml.search"))
-
     builder_for_summary = Nokogiri::XML::Builder.new do |xml|
       xml['csw']
       .GetRecords('xmlns:csw' => 'http://www.opengis.net/cat/csw/2.0.2',
@@ -31,7 +24,7 @@ class GeonetworkApi
                   'resultType' => 'results',
                   # metadata records start at position 1
                   'startPosition' => '1',
-                  'maxRecords' => "#{total_server_records}"
+                  'maxRecords' => "#{server_records_count}"
                   ) do
 
         xml['csw'].Query('typeNames' => 'gmd:MD_Metadata') {
@@ -48,8 +41,7 @@ class GeonetworkApi
       end
     end
 
-    self.index_records = get_metadata_index(get_response(builder_for_summary,"csw"))
-    self.total_records = index_records.size
+    self.index_records = get_metadata_index(get_response(builder_for_summary.to_xml,"csw"))
     index_records
   end
 
@@ -77,10 +69,10 @@ class GeonetworkApi
 
   private
 
-  def get_total_server_records(data)
-    xml = Nokogiri::XML(data)
-    xml.remove_namespaces!
-    self.total_records = xml.xpath("//summary/@count")
-                       .inner_text.to_i
+  def server_records_count
+    return @server_records_count if @server_records_count
+    data = get_response(SERVER_COUNT_XML, "xml.search")
+    @server_records_count =
+      Nokogiri::XML(data).xpath("//summary/@count").inner_text.to_i
   end
 end

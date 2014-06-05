@@ -18,14 +18,6 @@ describe GeonetworkApi do
     it 'should exist' do
       expect(api.metadata).to be_a MetadataRecord
     end
-
-    it 'should have the total of records returned' do
-      expect(api.total_records).to be_an(Integer)
-    end
-
-    it 'should have an array of the total records size' do
-      expect(api.index_records).to have(api.total_records).itens
-    end
   end
 
   describe 'pagination' do
