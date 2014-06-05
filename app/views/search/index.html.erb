@@ -12,18 +12,18 @@
   </div>
 
   <div class='col-md-9'>
-    <%= paginate @index %>
+    <%= paginate @metadata_records %>
 
-    <% @index.each do |e| %>
+    <% @metadata_records.each do |metadata_record| %>
       <div>
-        <%= link_to e.title, metadata_path(e.uuid) %>
-        <p><%= e.uuid %></p>
-        <p><%= e.abstract %></p>
-        <p><%= e.keywords.join(', ') %></p>
+        <%= link_to metadata_record.title, metadata_path(metadata_record.uuid) %>
+        <p><%= metadata_record.uuid %></p>
+        <p><%= metadata_record.abstract %></p>
+        <p><%= metadata_record.keywords.join(', ') %></p>
       </div>
     <% end %>
 
-    <%= paginate @index %>
+    <%= paginate @metadata_records %>
   </div>
 
 </div>

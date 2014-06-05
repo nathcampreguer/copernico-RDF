@@ -5,8 +5,7 @@ class SearchController < ApplicationController
   }
 
   def index
-    results = geonetwork_api.search(params[:search_field])
-    @index = Kaminari.paginate_array(results).page(params[:page]).per(5)
+    @metadata_records = paginated(geonetwork_api.search(params[:search_field]))
   end
 
   def show
@@ -17,5 +16,9 @@ class SearchController < ApplicationController
 
   def geonetwork_api
     GeonetworkApi.new(BASE_URIS[:mma])
+  end
+
+  def paginated(metadata_records)
+    Kaminari.paginate_array(metadata_records).page(params[:page]).per(5)
   end
 end
