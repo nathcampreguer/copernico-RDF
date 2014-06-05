@@ -1,19 +1,18 @@
 class GeonetworkApi
-  class << self
-    attr_accessor :base_uri, :metadata, :total_records, :total_server_records,
-                  :index_records
-  end
+  attr_accessor :base_uri, :metadata, :total_records, :total_server_records,
+    :index_records
 
-  # @base_uri = 'http://boldo.caiena.net:8080/geonetwork/srv/eng/'
-  @base_uri = 'http://mapas.mma.gov.br/geonetwork/srv/br/'
-  @metadata = MetadataRecord.new
-  @total_server_records = 0
-  @total_records = 0
-  @index_records = []
+  def initialize(base_uri)
+    self.base_uri = base_uri
+    @metadata = MetadataRecord.new
+    @total_server_records = 0
+    @total_records = 0
+    @index_records = []
+  end
 
   def get_response(builder, service)
     response = HTTP.with_headers(content_type: "application/xml")
-                   .post("#{GeonetworkApi.base_uri}#{service}",
+                   .post("#{base_uri}#{service}",
                     body: builder.to_xml).response.body
   end
 
@@ -32,7 +31,7 @@ class GeonetworkApi
                   'resultType' => 'results',
                   # metadata records start at position 1
                   'startPosition' => '1',
-                  'maxRecords' => "#{GeonetworkApi.total_server_records}"
+                  'maxRecords' => "#{total_server_records}"
                   ) do
 
         xml['csw'].Query('typeNames' => 'gmd:MD_Metadata') {
@@ -49,10 +48,10 @@ class GeonetworkApi
       end
     end
 
-    GeonetworkApi.total_server_records = get_total_server_records(get_response(builder, "xml.search"))
-    GeonetworkApi.index_records = get_metadata_index(get_response(builder_for_summary,"csw"))
-    GeonetworkApi.total_records = GeonetworkApi.index_records.size
-    GeonetworkApi.index_records
+    total_server_records = get_total_server_records(get_response(builder, "xml.search"))
+    index_records = get_metadata_index(get_response(builder_for_summary,"csw"))
+    total_records = index_records.size
+    index_records
   end
 
   def get_metadata_index(data)
@@ -60,18 +59,18 @@ class GeonetworkApi
     index_records = []
     xml.remove_namespaces!
     xml.xpath("//SummaryRecord").each { |node|
-      GeonetworkApi.metadata = MetadataRecord.new
-      GeonetworkApi.metadata.uuid = node.xpath('identifier').inner_text
-      GeonetworkApi.metadata.title = node.xpath('title').inner_text
-      GeonetworkApi.metadata.abstract = node.xpath('abstract').inner_text
+      metadata = MetadataRecord.new
+      metadata.uuid = node.xpath('identifier').inner_text
+      metadata.title = node.xpath('title').inner_text
+      metadata.abstract = node.xpath('abstract').inner_text
       subjects = []
 
       node.xpath('subject').each { |subject|
         subjects << subject.inner_text
       }
-      GeonetworkApi.metadata.keywords = subjects
+      metadata.keywords = subjects
 
-      index_records << GeonetworkApi.metadata
+      index_records << metadata
     }
 
     index_records
