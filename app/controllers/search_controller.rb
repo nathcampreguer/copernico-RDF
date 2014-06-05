@@ -5,7 +5,7 @@ class SearchController < ApplicationController
   }
 
   def index
-    results = geonetwork_api.get_results(params[:search_field])
+    results = geonetwork_api.search(params[:search_field])
     @index = Kaminari.paginate_array(results).page(params[:page]).per(5)
   end
 

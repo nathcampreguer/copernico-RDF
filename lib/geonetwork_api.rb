@@ -7,25 +7,13 @@ class GeonetworkApi
     self.base_uri = base_uri
   end
 
-  def get_results(search)
+  def search(search)
     body = I18n.t('geonetwork_api.xml.search') % {
       max_records: server_records_count,
       search: search
     }
 
-    get_metadata_index(http_post(body, 'csw'))
-  end
-
-  def get_metadata_index(data)
-    xml = Nokogiri::XML(data)
-    index_records = []
-    xml.remove_namespaces!
-
-    xml.xpath("//SummaryRecord").each { |node|
-      index_records << new_metadata_record(node)
-    }
-
-    index_records
+    metadata_collection(http_post(body, 'csw'))
   end
 
   private
@@ -58,5 +46,17 @@ class GeonetworkApi
     }
 
     metadata
+  end
+
+  def metadata_collection(data)
+    xml = Nokogiri::XML(data)
+    index_records = []
+    xml.remove_namespaces!
+
+    xml.xpath("//SummaryRecord").each { |node|
+      index_records << new_metadata_record(node)
+    }
+
+    index_records
   end
 end
