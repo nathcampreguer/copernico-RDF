@@ -19,33 +19,6 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
 
-  config.before(:each) do
-    support_path = 'spec/support/fixtures/'
-    # header = 'boldo.caiena.net'
-    header = 'mapas.mma.gov.br'
-    # url = "http://#{header}:8080/geonetwork/srv/eng/"
-    url = "http://#{header}/geonetwork/srv/br/"
-    canned_request = File.read "#{support_path}request_all_metadata.xml"
-    canned_response = File.read "#{support_path}all_metadata_results.xml"
-
-    xml_search_request = File.read "#{support_path}xml_search_request.xml"
-    xml_search_response = File.read "#{support_path}xml_search_response.xml"
-
-    # stub_request(:post, "#{url}csw")
-    # .with(header:'application/xml')
-    # .to_return(body: canned_response)
-
-    stub_request(:post, "#{url}csw")
-    .with(headers: {'Host'=>"#{header}", 'User-Agent'=>'RubyHTTPGem/0.5.0'},
-          body: anything)
-    .to_return(body: canned_response)
-
-    stub_request(:post, "#{url}xml.search")
-    .with(headers: {'Host'=>"#{header}", 'User-Agent'=>'RubyHTTPGem/0.5.0'},
-          body: anything)
-    .to_return(body: xml_search_response)
-  end
-
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:

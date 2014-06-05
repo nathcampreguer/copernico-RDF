@@ -8,7 +8,7 @@ class SearchController < ApplicationController
   DEFAULT_PROVIDER = :ana
 
   def index
-    @metadata_records = paginated(geonetwork_api.search(params[:search_field]))
+    @metadata_records = paginated(geonetwork_api.search(params[:search]))
   end
 
   def show
