@@ -1,5 +1,6 @@
 class SearchController < ApplicationController
   BASE_URIS = {
+    ana: 'http://metadados.ana.gov.br/geonetwork/srv/pt',
     caiena: 'http://boldo.caiena.net:8080/geonetwork/srv/eng',
     mma: 'http://mapas.mma.gov.br/geonetwork/srv/br'
   }
@@ -16,7 +17,7 @@ class SearchController < ApplicationController
   private
 
   def geonetwork_api
-    GeonetworkApi.new(BASE_URIS[:mma])
+    GeonetworkApi.new(BASE_URIS[:ana])
   end
 
   def paginated(metadata_records)
