@@ -13,7 +13,7 @@ class GeonetworkApi
       search: search
     }
 
-    metadata_collection(http_post(body, 'csw'))
+    MetadataRecordParser.parse(http_post(body, 'csw'))
   end
 
   private
@@ -27,36 +27,5 @@ class GeonetworkApi
     url = "#{base_uri}/#{path}"
     http = HTTP.with_headers(DEFAULT_HTTP_HEADER).post(url, body: body)
     http.response.body
-  end
-
-  def node_text(node, selector)
-    node.xpath(selector).inner_text
-  end
-
-  def new_metadata_record(node)
-    metadata = MetadataRecord.new({
-      uuid: node_text(node, 'identifier'),
-      title: node_text(node, 'title'),
-      abstract: node_text(node, 'abstract')
-    })
-
-    metadata.keywords = []
-    node.xpath('subject').each { |subject|
-      metadata.keywords << subject.inner_text
-    }
-
-    metadata
-  end
-
-  def metadata_collection(data)
-    xml = Nokogiri::XML(data)
-    index_records = []
-    xml.remove_namespaces!
-
-    xml.xpath("//SummaryRecord").each { |node|
-      index_records << new_metadata_record(node)
-    }
-
-    index_records
   end
 end

@@ -9,6 +9,7 @@ class SearchController < ApplicationController
   end
 
   def show
+    #XXX: implementar @metadata_record = geonetwork_api.find(params[:uuid])
     @uuid = params[:uuid]
   end
 
