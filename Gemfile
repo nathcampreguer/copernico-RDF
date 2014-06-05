@@ -61,4 +61,6 @@ group :development, :test do
   gem 'rails_best_practices'
   gem 'rubocop'
   gem 'debugger'
+
+  gem 'quiet_assets'
 end
