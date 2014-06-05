@@ -20,19 +20,9 @@ class GeonetworkApi
     xml = Nokogiri::XML(data)
     index_records = []
     xml.remove_namespaces!
+
     xml.xpath("//SummaryRecord").each { |node|
-      metadata = MetadataRecord.new
-      metadata.uuid = node.xpath('identifier').inner_text
-      metadata.title = node.xpath('title').inner_text
-      metadata.abstract = node.xpath('abstract').inner_text
-      subjects = []
-
-      node.xpath('subject').each { |subject|
-        subjects << subject.inner_text
-      }
-      metadata.keywords = subjects
-
-      index_records << metadata
+      index_records << new_metadata_record(node)
     }
 
     index_records
@@ -49,5 +39,24 @@ class GeonetworkApi
     url = "#{base_uri}/#{path}"
     http = HTTP.with_headers(DEFAULT_HTTP_HEADER).post(url, body: body)
     http.response.body
+  end
+
+  def node_text(node, selector)
+    node.xpath(selector).inner_text
+  end
+
+  def new_metadata_record(node)
+    metadata = MetadataRecord.new({
+      uuid: node_text(node, 'identifier'),
+      title: node_text(node, 'title'),
+      abstract: node_text(node, 'abstract')
+    })
+
+    metadata.keywords = []
+    node.xpath('subject').each { |subject|
+      metadata.keywords << subject.inner_text
+    }
+
+    metadata
   end
 end
