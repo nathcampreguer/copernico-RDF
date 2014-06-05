@@ -1,19 +1,17 @@
 class GeonetworkApi
-  attr_accessor :base_uri, :metadata, :total_records, :total_server_records,
-    :index_records
+  attr_accessor :base_uri, :metadata, :total_records, :index_records
 
   def initialize(base_uri)
     self.base_uri = base_uri
     @metadata = MetadataRecord.new
-    @total_server_records = 0
     @total_records = 0
     @index_records = []
   end
 
   def get_response(builder, service)
-    response = HTTP.with_headers(content_type: "application/xml")
-                   .post("#{base_uri}#{service}",
-                    body: builder.to_xml).response.body
+    http = HTTP.with_headers(content_type: "application/xml").post("#{base_uri}#{service}", body: builder.to_xml)
+
+    http.response.body
   end
 
   def get_results(search_params)
@@ -22,6 +20,8 @@ class GeonetworkApi
         xml.any ''
       }
     end
+
+    total_server_records = get_total_server_records(get_response(builder, "xml.search"))
 
     builder_for_summary = Nokogiri::XML::Builder.new do |xml|
       xml['csw']
@@ -48,9 +48,8 @@ class GeonetworkApi
       end
     end
 
-    total_server_records = get_total_server_records(get_response(builder, "xml.search"))
-    index_records = get_metadata_index(get_response(builder_for_summary,"csw"))
-    total_records = index_records.size
+    self.index_records = get_metadata_index(get_response(builder_for_summary,"csw"))
+    self.total_records = index_records.size
     index_records
   end
 
@@ -81,7 +80,7 @@ class GeonetworkApi
   def get_total_server_records(data)
     xml = Nokogiri::XML(data)
     xml.remove_namespaces!
-    total_records = xml.xpath("//summary/@count")
+    self.total_records = xml.xpath("//summary/@count")
                        .inner_text.to_i
   end
 end

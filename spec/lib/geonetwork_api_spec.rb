@@ -29,10 +29,6 @@ describe GeonetworkApi do
   end
 
   describe 'pagination' do
-    it 'should have the total records on the server' do
-      expect(api.total_server_records).to be_an(Integer)
-    end
-
     it 'receives a collection of Metadata Record as a response' do
       response = HTTP.with_headers(content_type: 'application/xml')
                      .post("#{url}xml.search", body: xml_search_request)
