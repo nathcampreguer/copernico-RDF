@@ -1,6 +1,5 @@
 class GeonetworkApi
   DEFAULT_HTTP_HEADER = { content_type: 'application/xml' }
-  SERVER_COUNT_XML = %q{<?xml version="1.0"?><request><any/></request>}
 
   attr_accessor :base_uri
 
@@ -8,32 +7,13 @@ class GeonetworkApi
     self.base_uri = base_uri
   end
 
-  def get_results(search_params)
-    builder_for_summary = Nokogiri::XML::Builder.new do |xml|
-      xml['csw']
-      .GetRecords('xmlns:csw' => 'http://www.opengis.net/cat/csw/2.0.2',
-                  'service' => 'CSW',
-                  'version' => '2.0.2',
-                  'resultType' => 'results',
-                  'startPosition' => '1',
-                  'maxRecords' => "#{server_records_count}"
-                  ) do
+  def get_results(search)
+    body = I18n.t('geonetwork_api.xml.search') % {
+      max_records: server_records_count,
+      search: search
+    }
 
-        xml['csw'].Query('typeNames' => 'gmd:MD_Metadata') {
-          xml['csw'].Constraint('version' => '1.1.0') {
-            xml.Filter('xmlns' => 'http://www.opengis.net/ogc',
-                       'xmlns:gml' => 'http://www.opengis.net/gml') {
-              xml.PropertyIsLike('wildCard' => '','singleChar' => '_') {
-                xml.PropertyName 'any'
-                xml.Literal search_params
-              }
-            }
-          }
-        }
-      end
-    end
-
-    get_metadata_index(http_post(builder_for_summary.to_xml,"csw"))
+    get_metadata_index(http_post(body, 'csw'))
   end
 
   def get_metadata_index(data)
@@ -61,7 +41,7 @@ class GeonetworkApi
   private
 
   def server_records_count
-    data = http_post(SERVER_COUNT_XML, "xml.search")
+    data = http_post(I18n.t('geonetwork_api.xml.count'), "xml.search")
     Nokogiri::XML(data).xpath("//summary/@count").inner_text.to_i
   end
 
