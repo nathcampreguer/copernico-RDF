@@ -1,8 +1,6 @@
 <%= @uuid %>
-
-<h4>Informações</h4>
-
-<div class="dt-left">
+<!--Information-->
+<div class="row">
 	<dl class="dl-horizontal">
 		<dt>Título</dt> <dd>title</dd>
 		<dt>Data</dt> <dd>date</dd>
@@ -11,33 +9,37 @@
 		<dt>Resumo</dt> <dd>abstract</dd>
 		<dt>Palavras-chave</dt> <dd>keywords</dd>
 	</dl>
-
-	<h4> Contato</h4>
-
-	<dl class="dl-horizontal">
-		<dt>Nome</dt> <dd>point_contact_name</dd>
-		<dt>Organização</dt> <dd>point_contact_organization</dd>
-		<dt>Função</dt> <dd>point_contact_role</dd>
-	</dl>	
-	<dl>
-		<dt>Endereço</dt>
-		<dd>point_contact_address</dd>
-		<dd>point_contact_city / point_contact_state - point_contact_country</dd>
-		<dd>point_contact_zipcode</dd>
-		<dd>point_contact_phone</dd>
-		<dd>point_contact_email</dd>
-	</dl>
-
-	<h4>Qualidade dos dados</h4>
-
+</div>
+<!--point of contact-->
+<div class="row">
+		<div class="col-md-6 ">
+			<dl class="dl-horizontal">
+				<dt>Nome</dt> <dd>point_contact_name</dd>
+				<dt>Organização</dt> <dd>point_contact_organization</dd>
+				<dt>Função</dt> <dd>point_contact_role</dd>
+			</dl>
+		</div>
+		<div class="col-md-3">
+			<dl>
+				<dt>Endereço</dt>
+				<dd>point_contact_address</dd>
+				<dd>point_contact_city / point_contact_state - point_contact_country</dd>
+				<dd>point_contact_zipcode</dd>
+				<dd>point_contact_phone</dd>
+				<dd>point_contact_email</dd>
+			</dl>
+		</div>
+</div>
+<!--quality-->
+<div class="row">
 	<dl class="dl-horizontal">
 		<dt>Nível hierárquico</dt> <dd>hierarchy_level</dd>
 		<dt>Declaração</dt> <dd>declaration</dd>
 		<dt>Frequência de manutenção/atualização</dt> <dd>maintainance</dd>
 	</dl>
-
-	<h4>Metadados</h4>
-
+</div>
+<!--metadata-->
+<div class="row">
 	<dl class="dl-horizontal">
 		<dt>Identificador</dt><dd>uuid</dd>
 		<dt>Idioma</dt><dd>language</dd>
@@ -45,20 +47,24 @@
 		<dt>Norma e perfil de metadados</dt><dd>standart_name</dd>
 		<dt>Versão da norma de metadados<dt><dd>standart_version</dd>
 	</dl>
-
-	<h4>Autor do metadado</h4>
-
-	<dl class="dl-horizontal">
-		<dt>Nome</dt> <dd>author_name</dd>
-		<dt>Organização</dt> <dd>author_organization</dd>
-		<dt>Função</dt> <dd>author_role</dd>
-	</dl>	
-	<dl>
-		<dt>Endereço</dt>
-		<dd>author_address</dd>
-		<dd>author_city / author_state - author_country</dd>
-		<dd>author_cep</dd>
-		<dd>author_phone</dd>
-		<dd>author_email</dd>
-	</dl>
+</div>
+<!--metadata author-->
+<div class="row">
+	<div class="col-md-6">
+		<dl class="dl-horizontal">
+			<dt>Nome</dt> <dd>author_name</dd>
+			<dt>Organização</dt> <dd>author_organization</dd>
+			<dt>Função</dt> <dd>author_role</dd>
+		</dl>
+	</div>
+	<div class="col-md-6">
+		<dl>
+			<dt>Endereço</dt>
+			<dd>author_address</dd>
+			<dd>author_city / author_state - author_country</dd>
+			<dd>author_cep</dd>
+			<dd>author_phone</dd>
+			<dd>author_email</dd>
+		</dl>
+	</div>
 </div>
