@@ -1,4 +1,4 @@
-class SearchController < ApplicationController
+class MetadataRecordsController < ApplicationController
   BASE_URIS = {
     ana: 'http://metadados.ana.gov.br/geonetwork/srv/pt',
     caiena: 'http://boldo.caiena.net:8080/geonetwork/srv/eng',

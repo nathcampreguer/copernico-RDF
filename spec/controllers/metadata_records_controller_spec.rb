@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SearchController do
+describe MetadataRecordsController do
   let(:url) { 'http://mapas.mma.gov.br/geonetwork/srv/br' }
   let(:support_path) { 'spec/support/fixtures' }
   let(:canned_request) { File.read "#{support_path}/request_all_metadata.xml" }
@@ -10,8 +10,8 @@ describe SearchController do
   describe 'GET #index' do
     before do
       # stuba o provedor de servico do geonetwork
-      stub_const('SearchController::DEFAULT_PROVIDER', :caiena)
-      stub_const('SearchController::BASE_URIS', { caiena: url })
+      stub_const('MetadataRecordsController::DEFAULT_PROVIDER', :caiena)
+      stub_const('MetadataRecordsController::BASE_URIS', { caiena: url })
 
       stub_request(:post, "#{url}/csw")
         .with(body: anything)
