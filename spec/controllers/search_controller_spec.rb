@@ -24,11 +24,11 @@ describe SearchController do
       visit root_path
     end
 
-    it 'sends a search request to GeoNetwork to the Api' do
+    it 'sends a search request to GeoNetwork trought the Api' do
       WebMock.should have_requested(:post, "#{url}/csw")
     end
 
-    it 'sends a xml.search request to GeoNetwork to the Api' do
+    it 'sends a xml.search request to GeoNetwork trought the Api' do
       WebMock.should have_requested(:post, "#{url}/xml.search")
     end
 
@@ -37,6 +37,12 @@ describe SearchController do
         .post("#{url}/csw", body: canned_request).response
 
       expect(response.body).to eql(canned_response)
+    end
+  end
+
+  describe 'POST #show' do
+    it 'sends a search request to GeoNetwork trought the Api' do
+      #Implementar
     end
   end
 end

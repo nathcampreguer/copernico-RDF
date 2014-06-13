@@ -13,7 +13,15 @@ class GeonetworkApi
       search: search
     }
 
-    MetadataRecordParser.parse(http_post(body, 'csw'))
+    MetadataRecordParser.parse_index(http_post(body, 'csw'))
+  end
+
+  def find(uuid)
+    body = I18n.t('geonetwork_api.xml.find') % {
+      uuid: uuid
+    }
+
+    #Implementar parser da resposta XML
   end
 
   private

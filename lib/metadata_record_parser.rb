@@ -1,6 +1,6 @@
 class MetadataRecordParser
 
-  def self.parse(data)
+  def self.parse_index(data)
     xml = Nokogiri::XML(data)
     xml.remove_namespaces!
 

@@ -2,8 +2,11 @@ require 'spec_helper'
 
 describe 'Search' do
   let(:support_path) { 'spec/support/fixtures/' }
-  let(:canned_response) { File.read "#{support_path}all_metadata_results.xml" }
-  let(:metadata_records) { MetadataRecordParser.parse(canned_response) }
+  let(:index_response) { File.read "#{support_path}all_metadata_results.xml" }
+  let(:metadata_records) { MetadataRecordParser.parse_index(index_response) }
+  let(:show_response) { File.read "#{support_path}xml_metadata_get_result.xml" }
+  #let(:metadata_record) { MetadataRecordParser.parse_show(show_response) }
+  #Implementar parse_show
 
   before do
     # evita que seja invocado o geonetwork pois eh desnecessario nesse teste
@@ -28,6 +31,9 @@ describe 'Search' do
 
   context 'when a user clicks on the title' do
     before do
+      #GeonetworkApi.any_instance.stub(:find).and_return(metadata_record)
+      #implementar parse_show
+
       visit root_path
 
       click_link metadata_records[0].title

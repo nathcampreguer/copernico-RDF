@@ -19,3 +19,9 @@ en:
             </csw:Constraint>
           </csw:Query>
         </csw:GetRecords>
+      find: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <request>
+          <uuid>%{uuid}</uuid>
+        </request>
+
