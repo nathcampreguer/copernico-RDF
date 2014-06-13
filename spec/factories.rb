@@ -14,39 +14,59 @@ FactoryGirl.define do
                Nacional - SCN.'
     keywords ['Cartografia', 'FLORIANÓPOLIS / SC',
                'Carta Topográfica Vetorial']
-    point_contact_name 'Diretoria de Geociências - DGC'
-    point_contact_organization 'Fundação Instituto Brasileiro de
-                                 Geografia e Estatística - IBGE'
-    point_contact_role 'Produtor: autor do recurso'
-    point_contact_address 'Av. Brasil, 15671 - Parada de Lucas'
-    point_contact_city 'Rio de Janeiro'
-    point_contact_state 'RJ: Rio de Janeiro'
-    point_contact_country 'BR'
-    point_contact_zipcode '21241-051'
-    point_contact_phone '55 (21) 2142-4987'
-    point_contact_email 'cartografia@ibge.gov.br'
-    hierarchy_level 'Folha: informação aplicável a um subconjunto
-                      de dados geográficos'
-    declaration 'Este conjunto de dados foi obtido por vetorização
-                 semi-automática dos arquivos matriciais georreferenciados.'
-    maintainance 'Conforme Necessidade: dados atualizados
-                   conforme necessário'
-    language 'Portuguese'
-    character_set 'UTF8: formato de transferência em código de caracteres
-                    universal de comprimento variável de 8 bits,
-                    baseado na norma ISO 10646'
-    standart_name 'ISO 19115:2003/19139'
-    standart_version '1.0'
-    author_name 'Diretoria de Geociências - DGC'
-    author_organization 'Fundação Instituto Brasileiro
-                          de Geografia e Estatística - IBGE'
-    author_role 'Autor: autor do recurso'
-    author_address 'Av. Brasil, 15671 - Parada de Lucas'
-    author_city 'Rio de Janeiro'
-    author_state 'RJ: Rio de Janeiro'
-    author_country 'BR'
-    author_zipcode '21241-051'
-    author_phone '55 (21) 2142-4987'
-    author_email 'cartografia@ibge.gov.br'
-  end
+
+      factory :point_of_contact, class: Contact do
+        skip_create
+
+        name 'Diretoria de Geociências - DGC'
+        organization 'Fundação Instituto Brasileiro de
+                      Geografia e Estatística - IBGE'
+        role 'Produtor: autor do recurso'
+        address 'Av. Brasil, 15671 - Parada de Lucas'
+        city 'Rio de Janeiro'
+        state 'RJ: Rio de Janeiro'
+        country 'BR'
+        zipcode '21241-051'
+        phone '55 (21) 2142-4987'
+        email 'cartografia@ibge.gov.br'
+      end
+
+      factory :author, class: Contact do
+        skip_create
+
+        name 'Diretoria de Geociências - DGC'
+        organization 'Fundação Instituto Brasileiro
+                      de Geografia e Estatística - IBGE'
+        role 'Autor: autor do recurso'
+        address 'Av. Brasil, 15671 - Parada de Lucas'
+        city 'Rio de Janeiro'
+        state 'RJ: Rio de Janeiro'
+        country 'BR'
+        zipcode '21241-051'
+        phone '55 (21) 2142-4987'
+        email 'cartografia@ibge.gov.br'
+      end
+
+      factory :metadata do
+        skip_create
+
+        language 'Portuguese'
+        character_set 'UTF8: formato de transferência em código de caracteres
+                        universal de comprimento variável de 8 bits,
+                        baseado na norma ISO 10646'
+        standart_name 'ISO 19115:2003/19139'
+        standart_version '1.0'
+      end
+
+      factory :quality do
+        skip_create
+
+        hierarchy_level 'Folha: informação aplicável a um subconjunto
+                          de dados geográficos'
+        declaration 'Este conjunto de dados foi obtido por vetorização
+                     semi-automática dos arquivos matriciais georreferenciados.'
+        maintainance 'Conforme Necessidade: dados atualizados
+                       conforme necessário'
+      end
+    end
 end
