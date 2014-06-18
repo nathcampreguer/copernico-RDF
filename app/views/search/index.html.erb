@@ -1,30 +1,15 @@
-<div class="row">
-  <div class="col-sm-3 col-md-2 sidebar">
-    <!--sidebar-->
-    <%= form_for root_path, method: :get do %>
-      <div class='input-group input-group-sm'>
-        <%= text_field_tag(:search, '',class: 'form-control' ) %>
-        <span class='input-group-btn'>
-          <%= button_tag('Buscar', class: 'btn btn-default', type: 'submit') %>
-        </span>
-      </div> <!--input-group-->
+<center><%= paginate @metadata_records %></center>
+<% @metadata_records.each do |metadata_record| %>
+  <div class="well well-lg">
+    <h4><%= link_to metadata_record.title,
+                    metadata_path(metadata_record.uuid) %></h4>
+    <p><%= metadata_record.abstract %></p>
+    <% metadata_record.keywords.each do |keyword| %>
+      <span class="label label-default">
+        <%= keyword %>
+      </span>
     <% end %>
   </div>
-  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <!--main-->
-    <center><%= paginate @metadata_records %></center>
-    <% @metadata_records.each do |metadata_record| %>
-      <div class="well well-lg">
-        <h4><%= link_to metadata_record.title,
-                        metadata_path(metadata_record.uuid) %></h4>
-        <p><%= metadata_record.abstract %></p>
-        <% metadata_record.keywords.each do |keyword| %>
-          <span class="label label-default">
-            <%= keyword %>
-          </span>
-        <% end %>
-      </div>
-    <% end %>
-    <center><%= paginate @metadata_records %></center>
-  </div>
-</div>
+<% end %>
+<center><%= paginate @metadata_records %></center>
+
