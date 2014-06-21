@@ -1,11 +1,14 @@
 FactoryGirl.define do
   factory :metadata_record do
     skip_create
+  end
 
-    #Information
+  factory :identification do
+    skip_create
+
     title 'CARTA TOPOGRÁFICA VETORIAL 1:50.000
             - FLORIANÓPOLIS SG-22-Z-D-V-2 MI 2909-2'
-    date '1981'
+    dates '1981'
     status 'Concluído: dados completados'
     credits 'Fundação Instituto Brasileiro de Geografia
               e Estatística - IBGE'
@@ -14,15 +17,23 @@ FactoryGirl.define do
                Nacional - SCN.'
     keywords ['Cartografia', 'FLORIANÓPOLIS / SC',
                'Carta Topográfica Vetorial']
-    #Matadata
+  end
+
+  factory :metametadata do
+    skip_create
+
     uuid '6c4677cd-76b2-40d2-8745-a392ccb616ea'
-    language 'Portuguese'
-    character_set 'UTF8: formato de transferência em código de caracteres
+    languages 'Portuguese'
+    character_sets 'UTF8: formato de transferência em código de caracteres
                     universal de comprimento variável de 8 bits,
                     baseado na norma ISO 10646'
     standard_name 'ISO 19115:2003/19139'
     standard_version '1.0'
-    #Quality
+  end
+
+  factory :quality do
+    skip_create
+
     scope 'Folha: informação aplicável a um subconjunto
                       de dados geográficos'
     statement 'Este conjunto de dados foi obtido por vetorização

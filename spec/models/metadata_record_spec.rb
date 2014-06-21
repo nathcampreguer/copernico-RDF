@@ -2,28 +2,20 @@ require 'spec_helper'
 
 describe MetadataRecord do
   let(:record) { FactoryGirl.create(:metadata_record)}
+  let(:identification) { FactoryGirl.create(:identification)}
+  let(:metametadata) { FactoryGirl.create(:metametadata)}
+  let(:quality) { FactoryGirl.create(:quality)}
 
   context 'Information' do
-    specify { expect(record).to respond_to(:title) }
-    specify { expect(record).to respond_to(:date) }
-    specify { expect(record).to respond_to(:status) }
-    specify { expect(record).to respond_to(:credits) }
-    specify { expect(record).to respond_to(:abstract) }
-    specify { expect(record).to respond_to(:keywords) }
+    specify { expect(record).to respond_to(:identification) }
   end
 
   context 'Metadata' do
-    specify { expect(record).to respond_to(:uuid) }
-    specify { expect(record).to respond_to(:language) }
-    specify { expect(record).to respond_to(:character_set) }
-    specify { expect(record).to respond_to(:standard_name) }
-    specify { expect(record).to respond_to(:standard_version) }
+    specify { expect(record).to respond_to(:metametadata) }
   end
 
   context 'Quality' do
-    specify { expect(record).to respond_to(:scope) }
-    specify { expect(record).to respond_to(:statement) }
-    specify { expect(record).to respond_to(:maintainance) }
+    specify { expect(record).to respond_to(:quality) }
   end
 
   context 'Contacts' do

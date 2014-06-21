@@ -13,7 +13,6 @@ class MetadataRecordsController < ApplicationController
 
   def show
     @metadata_record = geonetwork_api.find(params[:uuid])
-    # @uuid = params[:uuid]
   end
 
   private

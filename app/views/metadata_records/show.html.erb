@@ -1,8 +1,8 @@
 
 <div class="page-header">
-<h4><%= @metadata_record[0].title %></h4>
+<h4><%= @metadata_record[0].identification.title %></h4>
 </div>
-<% @metadata_record[0].keywords.each do |keyword| %>
+<% @metadata_record[0].identification.keywords.each do |keyword| %>
   <span class="label label-default">
     <%= keyword %>
   </span>
@@ -10,42 +10,58 @@
 <br/><br/>
 
 <dl class="dl-horizontal dt-left">
-  <dt>Data</dt> <dd><%= @metadata_record[0].date %></dd>
-  <dt>Status</dt> <dd><%= @metadata_record[0].status %></dd>
-  <dt>Créditos</dt> <dd><%= @metadata_record[0].credits %></dd>
-  <dt>Resumo</dt> <dd><%= @metadata_record[0].abstract %></dd>
+  <% @metadata_record[0].identification.dates.each do |date| %>
+    <dt>Datas</dt> <dd><%= date %></dd>
+  <% end %>
+  <dt>Status</dt> <dd><%= @metadata_record[0].identification.status %></dd>
+  <% @metadata_record[0].identification.credits.each do |credit| %>
+    <dt>Créditos</dt> <dd><%= credit %></dd>
+  <% end %>
+  <dt>Resumo</dt> <dd><%= @metadata_record[0].identification.abstract %></dd>
 </dl>
-<h4>Ponto de contato</h4>
-<dl>
-  <dt><%= @metadata_record[0].points_of_contact.organization %></dt>
-  <dd><small><%= @metadata_record[0].points_of_contact.name %> (<%= @metadata_record[0].points_of_contact.role %>)</small></dd>
-  <dd><%= @metadata_record[0].points_of_contact.address %></dd>
-  <dd><%= @metadata_record[0].points_of_contact.city %>, <%= @metadata_record[0].points_of_contact.country %></dd>
-  <dd><%= @metadata_record[0].points_of_contact.zipcode %></dd>
-  <dd><abbr title="Telefone">Tel: </abbr><%= @metadata_record[0].points_of_contact.phone %></dd>
-  <dd><%= @metadata_record[0].points_of_contact.email %></dd>
-</dl>
+
+<h4>Ponto(s) de contato</h4>
+<% @metadata_record[0].points_of_contact.each do |point_of_contact| %>
+  <dl>
+    <dt><%= point_of_contact.organization %></dt>
+    <dd><small><%= point_of_contact.name %> (<%= point_of_contact.role %>)</small></dd>
+    <dd><%= point_of_contact.address %></dd>
+    <dd><%= point_of_contact.city %>, <%= point_of_contact.country %></dd>
+    <dd><%= point_of_contact.zipcode %></dd>
+    <dd><abbr title="Telefone">Tel: </abbr><%= point_of_contact.phone %></dd>
+    <dd><%= point_of_contact.email %></dd>
+  </dl>
+<% end %>
+
 <h4>Qualidade dos dados</h4>
 <dl class="dl-horizontal dt-left dt-large">
-  <dt>Nível hierárquico</dt> <dd><%= @metadata_record[0].scope %></dd>
-  <dt>Declaração</dt> <dd><%= @metadata_record[0].statement %></dd>
-  <dt>Frequência de manutenção/atualização</dt> <dd><%= @metadata_record[0].maintainance %></dd>
+  <dt>Nível hierárquico</dt> <dd><%= @metadata_record[0].quality.scope %></dd>
+  <dt>Declaração</dt> <dd><%= @metadata_record[0].quality.statement %></dd>
+  <dt>Frequência de manutenção/atualização</dt> <dd><%= @metadata_record[0].quality.maintainance %></dd>
 </dl>
+
 <h4>Metadado</h4>
 <dl class="dl-horizontal dt-left dt-large">
-  <dt>Identificador</dt><dd><%= @metadata_record[0].uuid %></dd>
-  <dt>Idioma</dt><dd><%= @metadata_record[0].language %></dd>
-  <dt>Codificação de caracteres</dt><dd><%= @metadata_record[0].character_set %></dd>
-  <dt>Norma e perfil de metadados</dt><dd><%= @metadata_record[0].standard_name %></dd>
-  <dt>Versão da norma de metadados<dt><dd><%= @metadata_record[0].standard_version %></dd>
+  <dt>Identificador</dt><dd><%= @metadata_record[0].metametadata.uuid %></dd>
+  <% @metadata_record[0].metametadata.languages.each do |language| %>
+    <dt>Idiomas</dt><dd><%= language %></dd>
+  <% end %>
+  <% @metadata_record[0].metametadata.character_sets.each do |character_set| %>
+    <dt>Codificação de caracteres</dt><dd><%= character_set %></dd>
+  <% end %>
+  <dt>Norma e perfil de metadados</dt><dd><%= @metadata_record[0].metametadata.standard_name %></dd>
+  <dt>Versão da norma de metadados<dt><dd><%= @metadata_record[0].metametadata.standard_version %></dd>
 </dl>
-<h4>Autor</h4>
-<dl>
-  <dt><%= @metadata_record[0].authors.organization %></dt>
-  <dd><small><%= @metadata_record[0].authors.name %> (<%= @metadata_record[0].authors.role %>)</small></dd>
-  <dd><%= @metadata_record[0].authors.address %></dd>
-  <dd><%= @metadata_record[0].authors.city %>, <%= @metadata_record[0].authors.country %></dd>
-  <dd><%= @metadata_record[0].authors.zipcode %></dd>
-  <dd><abbr title="Telefone">Tel: </abbr><%= @metadata_record[0].authors.phone %></dd>
-  <dd><%= @metadata_record[0].authors.email %></dd>
-</dl>
+
+<h4>Autor(es)</h4>
+<% @metadata_record[0].authors.each do |author| %>
+  <dl>
+    <dt><%= author.organization %></dt>
+    <dd><small><%= author.name %> (<%= author.role %>)</small></dd>
+    <dd><%= author.address %></dd>
+    <dd><%= author.city %>, <%= author.country %></dd>
+    <dd><%= author.zipcode %></dd>
+    <dd><abbr title="Telefone">Tel: </abbr><%= author.phone %></dd>
+    <dd><%= author.email %></dd>
+  </dl>
+<% end %>

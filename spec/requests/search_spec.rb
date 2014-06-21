@@ -19,9 +19,9 @@ describe 'Search' do
 
   it 'displays an empty search based metadata_records' do
     metadata_records.each { |metadata_record|
-      expect(page).to have_content(metadata_record.title)
-      expect(page).to have_content(metadata_record.abstract)
-      metadata_record.keywords.each{ |keyword|
+      expect(page).to have_content(metadata_record.identification.title)
+      expect(page).to have_content(metadata_record.identification.abstract)
+      metadata_record.identification.keywords.each{ |keyword|
         expect(page).to have_content(keyword)
       }
     }
@@ -32,11 +32,11 @@ describe 'Search' do
       GeonetworkApi.any_instance.stub(:find).and_return(metadata_record)
       visit root_path
 
-      click_link metadata_records[0].title
+      click_link metadata_records[0].identification.title
     end
 
     it 'redirects to the metadata show page' do
-      expect(page).to have_content(metadata_record[0].uuid)
+      expect(page).to have_content(metadata_record[0].metametadata.uuid)
     end
   end
 end

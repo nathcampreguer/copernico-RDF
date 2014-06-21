@@ -1,10 +1,10 @@
 <center><%= paginate @metadata_records %></center>
 <% @metadata_records.each do |metadata_record| %>
   <div class="well well-lg">
-    <h4><%= link_to metadata_record.title,
-                    metadata_path(metadata_record.uuid) %></h4>
-    <p><%= metadata_record.abstract %></p>
-    <% metadata_record.keywords.each do |keyword| %>
+    <h4><%= link_to metadata_record.identification.title,
+                    metadata_path(metadata_record.metametadata.uuid) %></h4>
+    <p><%= metadata_record.identification.abstract %></p>
+    <% metadata_record.identification.keywords.each do |keyword| %>
       <span class="label label-default">
         <%= keyword %>
       </span>

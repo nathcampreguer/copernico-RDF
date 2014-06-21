@@ -2,12 +2,11 @@ class MetadataRecord
   include ActiveModel::Model
 
   #Identification
-  attr_accessor :title, :date, :status, :credits, :abstract, :keywords
+  attr_accessor :identification
   #Metametadata
-  attr_accessor :uuid, :language, :character_set,
-                :standard_name, :standard_version
+  attr_accessor :metametadata
   #Quality
-  attr_accessor :scope, :statement, :maintainance
+  attr_accessor :quality
   #Contacts
   attr_accessor :points_of_contact, :authors
 
