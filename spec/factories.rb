@@ -40,7 +40,6 @@ FactoryGirl.define do
     role 'Produtor: autor do recurso'
     address 'Av. Brasil, 15671 - Parada de Lucas'
     city 'Rio de Janeiro'
-    state 'RJ: Rio de Janeiro'
     country 'BR'
     zipcode '21241-051'
     phone '55 (21) 2142-4987'

@@ -8,7 +8,6 @@ describe Contact do
   specify { expect(contact).to respond_to(:organization) }
   specify { expect(contact).to respond_to(:address) }
   specify { expect(contact).to respond_to(:city) }
-  specify { expect(contact).to respond_to(:state) }
   specify { expect(contact).to respond_to(:country) }
   specify { expect(contact).to respond_to(:zipcode) }
   specify { expect(contact).to respond_to(:phone) }

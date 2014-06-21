@@ -3,7 +3,7 @@ class MetadataRecord
 
   #Identification
   attr_accessor :title, :date, :status, :credits, :abstract, :keywords
-  #Metadata
+  #Metametadata
   attr_accessor :uuid, :language, :character_set,
                 :standard_name, :standard_version
   #Quality

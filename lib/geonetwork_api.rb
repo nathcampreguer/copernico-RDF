@@ -16,6 +16,15 @@ class GeonetworkApi
     MetadataRecordParser.parse(http_post(body, 'csw'))
   end
 
+  def find(uuid)
+    body = I18n.t('geonetwork_api.xml.find') % {
+      max_records: 1,
+      uuid: uuid
+    }
+
+    MetadataRecordParser.parse(http_post(body, 'csw'))
+  end
+
   private
 
   def server_records_count

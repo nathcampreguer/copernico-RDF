@@ -1,66 +1,51 @@
 
 <div class="page-header">
-<h4>CARTA TOPOGRÁFICA VETORIAL 1:100.000 - FIGUEIRÃO SE-22-Y-A-IV MI 2440</h4>
+<h4><%= @metadata_record[0].title %></h4>
 </div>
-
-<span class="label label-default">Cartografia (discipline)</span>
-<span class="label label-default">FIGUEIRÃO / MS (place)</span>
-<span class="label label-default">Carta Topográfica Vetorial (theme)</span>
+<% @metadata_record[0].keywords.each do |keyword| %>
+  <span class="label label-default">
+    <%= keyword %>
+  </span>
+<% end %>
 <br/><br/>
 
 <dl class="dl-horizontal dt-left">
-  <dt>Data</dt> <dd>1973</dd>
-  <dt>Status</dt> <dd>Concluído: dados completados</dd>
-  <dt>Créditos</dt> <dd>Fundação Instituto Brasileiro de Geografia
-                        e Estatística - IBGE / Diretoria de Geociências
-                        - DGC / Coordenação de Cartografia - CCAR</dd>
-  <dt>Resumo</dt> <dd>Esta folha é parte integrante da série Carta Topográfica
-  1:100.000, uma das escalas que compõem o Sistema Cartográfico Nacional - SCN.
-  O IBGE desenvolve a produção desta série em conjunto com a Diretoria de
-  Serviço Geográfico - DSG. Cada folha 1:100.000 abrange um quadrilátero
-  geográfico de 30' de latitude e 30' de longitude. Este conjunto de dados
-  vetoriais está estruturado em categorias de informação: Hidrografia,
-  Hipsografia, Localidades, Limites, Sistemas de Transporte, Pontos de
-  Referência, Vegetação e Obras e Edificações, segundo modelagem da Mapoteca
-  Topográfica Digital do IBGE.</dd>
+  <dt>Data</dt> <dd><%= @metadata_record[0].date %></dd>
+  <dt>Status</dt> <dd><%= @metadata_record[0].status %></dd>
+  <dt>Créditos</dt> <dd><%= @metadata_record[0].credits %></dd>
+  <dt>Resumo</dt> <dd><%= @metadata_record[0].abstract %></dd>
 </dl>
 <h4>Ponto de contato</h4>
 <dl>
-  <dt>Diretoria de Geociências - DGC /
-     Coordenação de Cartografia - CCAR</dt>
-  <dd><small>Fundação Instituto Brasileiro de Geografia e
-     Estatística - IBGE (Produtor: autor do recurso)</small></dd>
-  <dd>Av. Brasil, 15671 - Parada de Lucas</dd>
-  <dd>Rio de Janeiro / RJ / BR</dd>
-  <dd>21241-051</dd>
-  <dd><abbr title="Telefone">Tel: </abbr>55 (21) 2142-4987</dd>
-  <dd>Fax: 55 (21) 2142-4973</dd>
-  <dd>cartografia@ibge.gov.br</dd>
+  <dt><%= @metadata_record[0].points_of_contact.organization %></dt>
+  <dd><small><%= @metadata_record[0].points_of_contact.name %> (<%= @metadata_record[0].points_of_contact.role %>)</small></dd>
+  <dd><%= @metadata_record[0].points_of_contact.address %></dd>
+  <dd><%= @metadata_record[0].points_of_contact.city %>, <%= @metadata_record[0].points_of_contact.country %></dd>
+  <dd><%= @metadata_record[0].points_of_contact.zipcode %></dd>
+  <dd><abbr title="Telefone">Tel: </abbr><%= @metadata_record[0].points_of_contact.phone %></dd>
+  <dd><%= @metadata_record[0].points_of_contact.email %></dd>
 </dl>
 <h4>Qualidade dos dados</h4>
 <dl class="dl-horizontal dt-left dt-large">
-  <dt>Nível hierárquico</dt> <dd>scope</dd>
-  <dt>Declaração</dt> <dd>statement</dd>
-  <dt>Frequência de manutenção/atualização</dt> <dd>maintainance</dd>
+  <dt>Nível hierárquico</dt> <dd><%= @metadata_record[0].scope %></dd>
+  <dt>Declaração</dt> <dd><%= @metadata_record[0].statement %></dd>
+  <dt>Frequência de manutenção/atualização</dt> <dd><%= @metadata_record[0].maintainance %></dd>
 </dl>
 <h4>Metadado</h4>
 <dl class="dl-horizontal dt-left dt-large">
-  <dt>Identificador</dt><dd><%= @uuid %></dd>
-  <dt>Idioma</dt><dd>language</dd>
-  <dt>Codificação de caracteres</dt><dd>character_set</dd>
-  <dt>Norma e perfil de metadados</dt><dd>standard_name</dd>
-  <dt>Versão da norma de metadados<dt><dd>standard_version</dd>
+  <dt>Identificador</dt><dd><%= @metadata_record[0].uuid %></dd>
+  <dt>Idioma</dt><dd><%= @metadata_record[0].language %></dd>
+  <dt>Codificação de caracteres</dt><dd><%= @metadata_record[0].character_set %></dd>
+  <dt>Norma e perfil de metadados</dt><dd><%= @metadata_record[0].standard_name %></dd>
+  <dt>Versão da norma de metadados<dt><dd><%= @metadata_record[0].standard_version %></dd>
 </dl>
 <h4>Autor</h4>
 <dl>
-  <dt>Diretoria de Geociências - DGC /
-     Coordenação de Cartografia - CCAR</dt>
-  <dd><small>Fundação Instituto Brasileiro de Geografia e
-     Estatística - IBGE (Produtor: autor do recurso)</small></dd>
-  <dd>Av. Brasil, 15671 - Parada de Lucas</dd>
-  <dd>Rio de Janeiro / RJ / BR</dd>
-  <dd>21241-051</dd>
-  <dd><abbr title="Telefone">Tel: </abbr>55 (21) 2142-4987</dd>
-  <dd>Fax: 55 (21) 2142-4973</dd>
-  <dd>cartografia@ibge.gov.br</dd>
+  <dt><%= @metadata_record[0].authors.organization %></dt>
+  <dd><small><%= @metadata_record[0].authors.name %> (<%= @metadata_record[0].authors.role %>)</small></dd>
+  <dd><%= @metadata_record[0].authors.address %></dd>
+  <dd><%= @metadata_record[0].authors.city %>, <%= @metadata_record[0].authors.country %></dd>
+  <dd><%= @metadata_record[0].authors.zipcode %></dd>
+  <dd><abbr title="Telefone">Tel: </abbr><%= @metadata_record[0].authors.phone %></dd>
+  <dd><%= @metadata_record[0].authors.email %></dd>
 </dl>
