@@ -1,5 +1,8 @@
 Copernico::Application.routes.draw do
-  match '/', to: 'metadata_records#index', via: 'get'
+  resources :metadata_records do
+    get 'page/:page', :action => :index, :on => :collection
+  end
+  # match '/', to: 'metadata_records#index', via: 'get'
   match '/metadata/:uuid', to: 'metadata_records#show', via: 'get', as: :metadata
 
   match '/about_metadata', to: 'static_pages#about_metadata', via: 'get'

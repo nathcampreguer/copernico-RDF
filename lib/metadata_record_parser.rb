@@ -10,8 +10,16 @@ class MetadataRecordParser
   private
 
   def self.node_text(node, selector)
-    if (node.xpath(selector).inner_text != '')
+    if (node.xpath(selector).inner_text != '' && !node.xpath(selector).empty?)
       node.xpath(selector).inner_text
+    else
+      text = '-- Ausente --'
+    end
+  end
+
+  def self.children_node_text(node, selector)
+    if (node.xpath(selector).children.inner_text != '' && node.xpath(selector).children != nil)
+      node.xpath(selector).children.inner_text
     else
       text = '-- Ausente --'
     end
@@ -36,18 +44,22 @@ class MetadataRecordParser
       status: node_text(node, "#{identification_path}/status/@codeListValue"),
       abstract: node_text(node, "#{identification_path}/abstract/#{value}")
     })
-    identification.dates = []
-    node.xpath("#{identification_path}/citation/CI_Citation/date/CI_Date/date/DateTime").inject(identification.dates) do |acc, date|
-      acc << date.inner_text
-    end
-    identification.credits = []
-    node.xpath("#{identification_path}/credit/#{value}").inject(identification.credits) do |acc, credit|
-      acc << credit.inner_text
-    end
-    identification.keywords = []
-    node.xpath("#{identification_path}/descriptiveKeywords/MD_Keywords/keyword/#{value}").inject(identification.keywords) do |acc, keyword|
-      acc << keyword.inner_text
-    end
+    identification.dates = node.xpath("#{identification_path}/citation/CI_Citation/date/CI_Date/date/DateTime")
+      .inject([]) do |acc, date|
+        acc << date.inner_text
+      end
+    identification.credits = node.xpath("#{identification_path}/credit/#{value}")
+      .inject([]) do |acc, credit|
+        if !(node.xpath("#{identification_path}/credit/#{value}").empty?)
+          acc << credit.inner_text
+        else
+          acc << '-- Ausente --'
+        end
+      end
+    identification.keywords = node.xpath("#{identification_path}/descriptiveKeywords/MD_Keywords/keyword/#{value}")
+      .inject([]) do |acc, keyword|
+        acc << keyword.inner_text
+      end
     identification
   end
 
@@ -57,14 +69,14 @@ class MetadataRecordParser
       standard_name: node_text(node, "metadataStandardName/#{value}"),
       standard_version: node_text(node, "metadataStandardVersion/#{value}")
     })
-    metametadata.languages = []
-    node.xpath("language/#{value}").inject(metametadata.languages) do |acc, language|
-      acc << language.inner_text
-    end
-    metametadata.character_sets = []
-    node.xpath('characterSet/MD_CharacterSetCode/@codeListValue').inject(metametadata.character_sets) do |acc, character_set|
-      acc << character_set.inner_text
-    end
+    metametadata.languages = node.xpath("language/#{value}")
+      .inject([]) do |acc, language|
+        acc << language.inner_text
+      end
+    metametadata.character_sets = node.xpath('characterSet/MD_CharacterSetCode/@codeListValue')
+      .inject([]) do |acc, character_set|
+        acc << character_set.inner_text
+      end
     metametadata
   end
 
@@ -80,19 +92,20 @@ class MetadataRecordParser
     ci_contact_path = 'CI_ResponsibleParty/contactInfo/CI_Contact'
     address_path = "#{ci_contact_path}/address/CI_Address"
     contacts = []
-    node.xpath("#{type}").inject(contacts) do |acc, contact|
-      contact = Contact.new({
-        name: node_text(node, "#{type}/CI_ResponsibleParty/individualName/#{value}"),
-        organization: node_text(node, "#{type}/CI_ResponsibleParty/organisationName/#{value}"),
-        role: node_text(node, "#{type}/CI_ResponsibleParty/positionName/#{value}"),
-        address: node_text(node, "#{type}/#{address_path}/deliveryPoint/#{value}"),
-        city: node_text(node, "#{type}/#{address_path}/city/#{value}"),
-        country: node_text(node, "#{type}/#{address_path}/country/#{value}"),
-        zipcode: node_text(node, "#{type}/#{address_path}/postalCode/#{value}"),
-        phone: node_text(node, "#{type}/#{ci_contact_path}/phone/CI_Telephone/voice/#{value}"),
-        email: node_text(node, "#{type}/#{address_path}/electronicMailAddress/#{value}")
+
+    node.xpath("#{type}").each do |contact|
+      new_contact = Contact.new({
+        name: children_node_text(contact, "CI_ResponsibleParty/individualName/#{value}"),
+        organization: children_node_text(contact, "CI_ResponsibleParty/organisationName/#{value}"),
+        role: children_node_text(contact, "CI_ResponsibleParty/positionName/#{value}"),
+        address: children_node_text(contact, "#{address_path}/deliveryPoint/#{value}"),
+        city: children_node_text(contact, "#{address_path}/city/#{value}"),
+        country: children_node_text(contact, "#{address_path}/country/#{value}"),
+        zipcode: children_node_text(contact, "#{address_path}/postalCode/#{value}"),
+        phone: children_node_text(contact, "#{ci_contact_path}/phone/CI_Telephone/voice/#{value}"),
+        email: children_node_text(contact, "#{address_path}/electronicMailAddress/#{value}")
       })
-      acc << contact
+      contacts << new_contact
     end
     contacts
   end

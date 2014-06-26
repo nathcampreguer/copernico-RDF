@@ -14,17 +14,18 @@
     <dt>Datas</dt> <dd><%= date %></dd>
   <% end %>
   <dt>Status</dt> <dd><%= @metadata_record[0].identification.status %></dd>
+  <dt>Créditos</dt>
   <% @metadata_record[0].identification.credits.each do |credit| %>
-    <dt>Créditos</dt> <dd><%= credit %></dd>
+    <dd><%= credit %></dd>
   <% end %>
   <dt>Resumo</dt> <dd><%= @metadata_record[0].identification.abstract %></dd>
 </dl>
 
 <h4>Ponto(s) de contato</h4>
-<% @metadata_record[0].points_of_contact.each do |point_of_contact| %>
+<% @metadata_record[0].points_of_contact.each do | point_of_contact | %>
   <dl>
     <dt><%= point_of_contact.organization %></dt>
-    <dd><small><%= point_of_contact.name %> (<%= point_of_contact.role %>)</small></dd>
+    <dd><small><%= point_of_contact.name %> (Cargo:  <%= point_of_contact.role %>)</small></dd>
     <dd><%= point_of_contact.address %></dd>
     <dd><%= point_of_contact.city %>, <%= point_of_contact.country %></dd>
     <dd><%= point_of_contact.zipcode %></dd>
@@ -57,7 +58,7 @@
 <% @metadata_record[0].authors.each do |author| %>
   <dl>
     <dt><%= author.organization %></dt>
-    <dd><small><%= author.name %> (<%= author.role %>)</small></dd>
+    <dd><small><%= author.name %> (Cargo: <%= author.role %>)</small></dd>
     <dd><%= author.address %></dd>
     <dd><%= author.city %>, <%= author.country %></dd>
     <dd><%= author.zipcode %></dd>
