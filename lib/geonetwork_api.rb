@@ -1,4 +1,4 @@
-require 'http'
+require 'net/http'
 
 class GeonetworkApi
   DEFAULT_HTTP_HEADER = { content_type: 'application/xml' }
