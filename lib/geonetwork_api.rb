@@ -1,3 +1,5 @@
+require 'http'
+
 class GeonetworkApi
   DEFAULT_HTTP_HEADER = { content_type: 'application/xml' }
 
@@ -34,7 +36,7 @@ class GeonetworkApi
 
   def http_post(body, path)
     url = "#{base_uri}/#{path}"
-    http = ::HTTP.with_headers(DEFAULT_HTTP_HEADER).post(url, body: body)
+    http = HTTP.with_headers(DEFAULT_HTTP_HEADER).post(url, body: body)
     http.response.body
   end
 end
