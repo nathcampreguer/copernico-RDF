@@ -36,7 +36,6 @@ gem 'jbuilder', '~> 1.2'
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-gem 'capistrano', group: :development
 
 gem 'webmock', group: :test
 
@@ -51,6 +50,12 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+end
 
 group :development, :test do
   gem 'rspec-rails'
