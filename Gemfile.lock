@@ -257,6 +257,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   kaminari
+  minitest
   nokogiri
   quiet_assets
   rails (= 4.0.3)
