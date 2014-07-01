@@ -1,7 +1,8 @@
 require 'net/http'
+require 'nokogiri'
 
 class GeonetworkApi
-  DEFAULT_HTTP_HEADER = { content_type: 'application/xml' }
+  DEFAULT_HTTP_HEADER = { 'ContentType' => 'application/xml' }
 
   attr_accessor :base_uri
 
@@ -35,8 +36,10 @@ class GeonetworkApi
   end
 
   def http_post(body, path)
-    url = "#{base_uri}/#{path}"
-    http = HTTP.with_headers(DEFAULT_HTTP_HEADER).post(url, body: body)
-    http.response.body
+   url = "#{base_uri}/#{path}"
+   uri = URI.parse(url)
+   http = Net::HTTP.new(uri.host, uri.port)
+   response = http.post(uri.path, body, DEFAULT_HTTP_HEADER)
+   response.body
   end
 end
