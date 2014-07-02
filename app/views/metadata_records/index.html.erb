@@ -1,14 +1,19 @@
-<center><%= paginate @metadata_records %></center>
-<% @metadata_records.each do |metadata_record| %>
-  <div class="well well-lg">
-    <h4><%= link_to metadata_record.identification.title,
-                    metadata_path(metadata_record.metametadata.uuid) %></h4>
-    <p><%= metadata_record.identification.abstract %></p>
-    <% metadata_record.identification.keywords.each do |keyword| %>
-      <span class="label label-default">
-        <%= keyword %>
-      </span>
+<div class="row">
+  <%= render 'sidebar' %>
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+    <center><%= paginate @metadata_records %></center>
+    <% @metadata_records.each do |metadata_record| %>
+      <div class="well well-lg">
+        <h4><%= link_to metadata_record.identification.title,
+                        metadata_path(metadata_record.metametadata.uuid) %></h4>
+        <p><%= metadata_record.identification.abstract %></p>
+        <% metadata_record.identification.keywords.each do |keyword| %>
+          <span class="label label-default">
+            <%= keyword %>
+          </span>
+        <% end %>
+      </div>
     <% end %>
+    <center><%= paginate @metadata_records %></center>
   </div>
-<% end %>
-<center><%= paginate @metadata_records %></center>
+</div>

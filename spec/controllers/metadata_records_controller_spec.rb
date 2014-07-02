@@ -6,12 +6,13 @@ describe MetadataRecordsController do
   let(:canned_request) { File.read "#{support_path}/request_all_metadata.xml" }
   let(:canned_response) { File.read "#{support_path}/all_metadata_results.xml" }
   let(:xml_search_response) { File.read "#{support_path}/xml_search_response.xml" }
+  let(:providers) { { caiena: { url: url, title: 'Caiena' } } }
 
   describe 'GET #index' do
     before do
       # stuba o provedor de servico do geonetwork
       stub_const('MetadataRecordsController::DEFAULT_PROVIDER', :caiena)
-      stub_const('MetadataRecordsController::BASE_URIS', { caiena: url })
+      stub_const('MetadataRecordsController::PROVIDERS', providers)
 
       stub_request(:post, "#{url}/csw")
         .with(body: anything)

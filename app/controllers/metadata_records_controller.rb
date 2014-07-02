@@ -1,8 +1,19 @@
 class MetadataRecordsController < ApplicationController
-  BASE_URIS = {
-    ana: 'http://metadados.ana.gov.br/geonetwork/srv/pt',
-    caiena: 'http://boldo.caiena.net:8080/geonetwork/srv/eng',
-    mma: 'http://mapas.mma.gov.br/geonetwork/srv/br'
+  PROVIDERS = {
+    ana: {
+      title: 'Agência Nacional de Águas',
+      url: 'http://metadados.ana.gov.br/geonetwork/srv/pt',
+    },
+
+    caiena: {
+      title: 'Caiena',
+      url: 'http://boldo.caiena.net:8080/geonetwork/srv/eng'
+    },
+
+    mma: {
+      title: 'Ministério do Meio Ambiente',
+      url: 'http://mapas.mma.gov.br/geonetwork/srv/br'
+    }
   }
 
   DEFAULT_PROVIDER = :ana
@@ -18,7 +29,7 @@ class MetadataRecordsController < ApplicationController
   private
 
   def geonetwork_api
-    GeonetworkApi.new(BASE_URIS[DEFAULT_PROVIDER])
+    GeonetworkApi.new(PROVIDERS[DEFAULT_PROVIDER][:url])
   end
 
   def paginated(metadata_records)

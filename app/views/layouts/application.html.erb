@@ -1,28 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Copernico</title>
-  <%= stylesheet_link_tag    "application", media: "all",
-                             "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-  <%= render 'layouts/shim' %>
-</head>
+  <head>
+    <title>Copernico</title>
+    <%= stylesheet_link_tag :application %>
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/shim' %>
+  </head>
 
-<body>
-
-  <%= render 'layouts/header' %>
-  <div class="container-fluid">
-    <div class="row">
-      <%= render 'layouts/sidebar' %>
-      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <%= yield %>
-      </div><!--main-->
+  <body>
+    <%= render 'layouts/header' %>
+    <div class="container-fluid main">
+      <%= yield %>
     </div>
 
     <%= render 'layouts/footer' %>
-  </div><!--/.container-->
+    </div><!--/.container-->
 
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-
-</body>
+  </body>
 </html>
