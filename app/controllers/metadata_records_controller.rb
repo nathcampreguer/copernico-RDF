@@ -36,7 +36,7 @@ class MetadataRecordsController < ApplicationController
     }
   }
 
-  DEFAULT_PROVIDER = 'ana'
+  DEFAULT_PROVIDER = 'caiena'
 
   def index
     @metadata_records = paginated(metadata_records)
