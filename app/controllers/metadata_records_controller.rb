@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MetadataRecordsController < ApplicationController
   PROVIDERS = {
     'ana' => {
@@ -44,8 +45,13 @@ class MetadataRecordsController < ApplicationController
 
   def show
     @metadata_record = geonetwork_api.find(params[:uuid])
-    @rdf_metadata = MetadataRecordRdf.new(@metadata_record.first.metametadata.uuid)
-    @rdf_metadata.save
+    @rdf_metadata = MetadataRecordRdf.new('http://example.com/metadata/' + @metadata_record.first.metametadata.uuid)
+    @rdf_metadata.title = @metadata_record.first.identification.title
+
+    begin
+      @rdf_metadata.save!
+    rescue
+    end
     @rdf = MetadataRecordRdf.count
   end
 

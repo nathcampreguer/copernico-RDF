@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Identification
 
   attr_accessor :title, :dates, :status, :credits, :abstract, :keywords

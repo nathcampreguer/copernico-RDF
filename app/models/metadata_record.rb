@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MetadataRecord
   include ActiveModel::Model
 

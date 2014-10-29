@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Copernico::Application.routes.draw do
   resources :metadata_records do
     get 'page/:page', :action => :index, :on => :collection

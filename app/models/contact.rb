@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Contact
 
   attr_accessor :name, :organization, :role

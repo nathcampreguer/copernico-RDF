@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 set :application, 'copernico'
 set :repo_url, 'git@github.com:copernico-ide/copernico'
 set :deploy_to, '/copernico/app'

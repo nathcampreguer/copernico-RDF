@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Quality
 
   attr_accessor :scope, :statement, :maintainance

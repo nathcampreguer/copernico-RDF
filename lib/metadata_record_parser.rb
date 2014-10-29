@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MetadataRecordParser
   def self.parse(data)
     xml = Nokogiri::XML(data)

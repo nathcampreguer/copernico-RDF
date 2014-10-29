@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Metametadata
 
   attr_accessor :uuid, :languages, :character_sets,

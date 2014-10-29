@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Quality
   include ActiveModel::Model
 
