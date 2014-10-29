@@ -3,24 +3,13 @@ class MetadataRecordRdf
   include Tripod::Resource
 
   rdf_type 'http://def.seegrid.csiro.au/static/isotc211/iso19115/2003/metadata'
-  graph_uri 'http://def.seegrid.csiro.au/static/isotc211/iso19115/2003/metadata'
+  graph_uri 'http://copernicoide.com/metadados'
 
   # field :identification, 'http://def.seegrid.csiro.au/isotc211/iso19115/2003/metadata#Identification'
   # field :metametadata, 'http://def.seegrid.csiro.au/isotc211/iso19115/2003/metadata#Metadata'
   # field :quality, 'http://def.seegrid.csiro.au/isotc211/iso19115/2003/dataquality#DataQuality'
   # field :points_of_contact, 'http://def.seegrid.csiro.au/isotc211/iso19115/2003/metadata#pointOfContact', multivalued: true
   # field :authors, 'http://def.seegrid.csiro.au/isotc211/iso19115/2003/metadata#contact', multivalued: true
-
-  #contact
-  field :name, 'http://def.seegrid.csiro.au/isotc211/iso19115/2003/citation#individualName'
-  field :organization, 'http://def.seegrid.csiro.au/isotc211/iso19115/2003/citation#organisationName'
-  field :role, 'http://def.seegrid.csiro.au/isotc211/iso19115/2003/citation#positionName'
-  field :address, 'http://def.seegrid.csiro.au/isotc211/iso19115/2003/citation#deliveryPoint'
-  field :city, 'http://def.seegrid.csiro.au/isotc211/iso19115/2003/citation#city'
-  field :country, 'http://def.seegrid.csiro.au/isotc211/iso19115/2003/citation#country'
-  field :zipcode, 'http://def.seegrid.csiro.au/isotc211/iso19115/2003/citation#postalCode'
-  field :phone, 'http://def.seegrid.csiro.au/isotc211/iso19115/2003/citation#phone'
-  field :email, 'http://def.seegrid.csiro.au/isotc211/iso19115/2003/citation#electronicMailAddress'
 
   # identification
   field :title, 'http://def.seegrid.csiro.au/isotc211/iso19115/2003/citation#title'
@@ -40,5 +29,4 @@ class MetadataRecordRdf
   #quality
   field :scope, 'http://def.seegrid.csiro.au/isotc211/iso19115/2003/dataquality#scope'
   field :statement, 'http://def.seegrid.csiro.au/isotc211/iso19115/2003/lineage#statement'
-  field :maintainance, 'http://def.seegrid.csiro.au/isotc211/iso19115/2003/code/MaintenanceFrequency/'
 end

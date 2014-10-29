@@ -16,4 +16,30 @@ class MetadataRecord
       public_send("#{attr}=", value)
     end
   end
+
+  def to_rdf(provider_url)
+    metadata_rdf = MetadataRecordRdf.new(provider_url + '/metadata.show?uuid=' + metametadata.uuid)
+    #identification
+    metadata_rdf.title = identification.title
+    metadata_rdf.abstract = identification.abstract
+    metadata_rdf.keywords = identification.keywords
+    metadata_rdf.status = identification.status
+    metadata_rdf.credits = identification.credits
+    metadata_rdf.dates = identification.dates
+
+    #metametadata
+    metadata_rdf.uuid = metametadata.uuid
+    metadata_rdf.standard_name = metametadata.standard_name
+    metadata_rdf.standard_version = metametadata.standard_version
+    metadata_rdf.character_sets = metametadata.character_sets
+    metadata_rdf.languages = metametadata.languages
+
+    #quality
+
+    metadata_rdf.scope = quality.scope
+    metadata_rdf.statement = quality.statement
+
+    metadata_rdf.save!
+    metadata_rdf.to_rdf
+  end
 end

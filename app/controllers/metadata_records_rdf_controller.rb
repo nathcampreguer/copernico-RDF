@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-class MetadataRecordsController < ApplicationController
+class MetadataRecordsRdfController < ApplicationController
   PROVIDERS = {
     'ana' => {
       title: 'Agência Nacional de Águas',
@@ -39,18 +39,10 @@ class MetadataRecordsController < ApplicationController
 
   DEFAULT_PROVIDER = 'caiena'
 
-  def index
-    @metadata_records = paginated(metadata_records)
-  end
-
   def show
     @metadata_record = geonetwork_api.find(params[:uuid])
     if !@metadata_record.empty?
-      @rdf_metadata = MetadataRecordRdf.new(provider[:url]+'/metadata.show?uuid=' + @metadata_record[0].metametadata.uuid)
-      begin
-        @rdf_metadata.save!
-      rescue
-      end
+      @metadata_record_rdf = @metadata_record[0].to_rdf(provider[:url])
       @rdf = MetadataRecordRdf.count
     end
   end
