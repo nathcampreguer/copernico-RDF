@@ -44,6 +44,9 @@ class MetadataRecordsController < ApplicationController
 
   def show
     @metadata_record = geonetwork_api.find(params[:uuid])
+    @rdf_metadata = MetadataRecordRdf.new(@metadata_record.first.metametadata.uuid)
+    @rdf_metadata.save
+    @rdf = MetadataRecordRdf.count
   end
 
   private
