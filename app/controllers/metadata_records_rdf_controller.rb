@@ -44,15 +44,16 @@ class MetadataRecordsRdfController < ApplicationController
     if !@metadata_record.empty?
       if params[:standard]=='rdf'
         @metadata_record_parsed = @metadata_record[0].to_rdf(provider[:url])
+        render layout: false, content_type: 'application/xml'
       end
       if params[:standard]=='ttl'
         @metadata_record_parsed = @metadata_record[0].to_turtle(provider[:url])
+        render layout: false, content_type: 'text/ttl'
       end
       if params[:standard]=='json'
         @metadata_record_parsed = @metadata_record[0].to_json(provider[:url])
+        render layout: false, content_type: 'application/json'
       end
-
-      render layout: false
     end
   end
 
