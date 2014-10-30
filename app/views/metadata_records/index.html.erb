@@ -6,8 +6,16 @@
     <center><%= paginate @metadata_records %></center>
     <% @metadata_records.each do |metadata_record| %>
       <div class="well well-lg">
-        <div class="btn btn-primary btn-rdf"><%= link_to "Gerar RDF",
-                        metadata_rdf_path(metadata_record.metametadata.uuid) %></div>
+        <div class="row">
+          <div class="metadata-menu">
+            <span class="btn btn-primary btn-turtle"><%= link_to "Gerar Turtle",
+                            metadata_rdf_path(metadata_record.metametadata.uuid, standard: 'ttl') %></span>
+            <span class="btn btn-primary btn-json"><%= link_to "Gerar JSON",
+                            metadata_rdf_path(metadata_record.metametadata.uuid, standard: 'json') %></span>
+            <span class="btn btn-primary btn-rdf"><%= link_to "Gerar RDF",
+                            metadata_rdf_path(metadata_record.metametadata.uuid, standard: 'rdf') %></span>
+          </div>
+        </div>
         <h4><%= link_to metadata_record.identification.title,
                         metadata_path(metadata_record.metametadata.uuid) %></h4>
         <p><%= metadata_record.identification.abstract %></p>

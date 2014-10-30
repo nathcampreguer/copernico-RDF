@@ -116,10 +116,12 @@ footer a {
 
 /* Metadata Index*/
 
-.btn-rdf {
+.metadata-menu {
   float: right;
+  clear:both;
 }
 
-.btn-rdf a {
+.btn a {
   color: white;
+  margin: 10px
 }

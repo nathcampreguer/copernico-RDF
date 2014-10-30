@@ -45,14 +45,6 @@ class MetadataRecordsController < ApplicationController
 
   def show
     @metadata_record = geonetwork_api.find(params[:uuid])
-    if !@metadata_record.empty?
-      @rdf_metadata = MetadataRecordRdf.new(provider[:url]+'/metadata.show?uuid=' + @metadata_record[0].metametadata.uuid)
-      begin
-        @rdf_metadata.save!
-      rescue
-      end
-      @rdf = MetadataRecordRdf.count
-    end
   end
 
   private

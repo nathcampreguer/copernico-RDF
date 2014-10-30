@@ -42,8 +42,17 @@ class MetadataRecordsRdfController < ApplicationController
   def show
     @metadata_record = geonetwork_api.find(params[:uuid])
     if !@metadata_record.empty?
-      @metadata_record_rdf = @metadata_record[0].to_rdf(provider[:url])
-      @rdf = MetadataRecordRdf.count
+      if params[:standard]=='rdf'
+        @metadata_record_parsed = @metadata_record[0].to_rdf(provider[:url])
+      end
+      if params[:standard]=='ttl'
+        @metadata_record_parsed = @metadata_record[0].to_turtle(provider[:url])
+      end
+      if params[:standard]=='json'
+        @metadata_record_parsed = @metadata_record[0].to_json(provider[:url])
+      end
+
+      render layout: false
     end
   end
 
